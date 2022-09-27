@@ -1,6 +1,23 @@
 // GLOBAL MIXINS
+@mixin between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
 
+@mixin center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
 
+.content {
+    max-width: 1286px;
+    width: 100%;
+    margin: 0 auto;
+}
 
 // COLORS
 
@@ -12,4 +29,107 @@
 .container {
     width: 100%;
     background-color: #FAFAFB;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+
+// Header
+header {
+    width: 100%;
+    max-width: 1920px;
+    background-color: white;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.075);
+    padding: 0px 50px;
+    .content {
+        padding-top: 28px;
+        padding-bottom: 20px;
+        @include between();
+        gap: 50px;
+        .right {
+            @include between();
+            gap: 20px;
+
+            .cart,
+            .bell,
+            .user,
+            .flag {
+                height: 46px;
+                width: 50px;
+                background: #FFFFFF 0% 0% no-repeat padding-box;
+                border: 1px solid #F1F1F5;
+                border-radius: 12px;
+                @include center();
+                cursor: pointer;
+            }
+
+            .user {
+                @include center();
+                width: 160px;
+                gap: 15px;
+            }
+
+            .cart {
+                position: relative;
+
+                p {
+                    position: absolute;
+                    top: -7px;
+                    right: -7px;
+                    width: 20px;
+                    height: 20px;
+                    background-color: #FF4D4D;
+                    border-radius: 11px;
+                    opacity: 1;
+                    @include center();
+                    font-weight: bold;
+                    color: white;
+                }
+            }
+
+        }
+    }
+}
+.header_mobile {
+    display: none;
+}
+
+// RESPONSIVE FOR HEADER
+@media (max-width:703px) {
+    header{
+        .content{
+            @include center();
+        }
+    }
+}
+
+@media (max-width:480px) {
+    .header_desktop{
+        display: none;
+    }
+    .header_mobile{
+        @include between();
+        padding: 28px;
+        .right{
+            @include center();
+        }
+        .left{
+            height: 16px;
+            gap: 14px;
+            img{
+                display: inline-block;
+                vertical-align: top;
+            }
+            .logo{
+                width: 120px;
+                margin-left: 14px;
+            }
+        }
+        .right{
+            gap: 23px;
+        }
+    }
 }

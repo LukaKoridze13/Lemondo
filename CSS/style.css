@@ -1,4 +1,126 @@
+.content {
+  max-width: 1286px;
+  width: 100%;
+  margin: 0 auto;
+}
+
 .container {
   width: 100%;
   background-color: #FAFAFB;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+header {
+  width: 100%;
+  max-width: 1920px;
+  background-color: white;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.075);
+  padding: 0px 50px;
+}
+header .content {
+  padding-top: 28px;
+  padding-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 50px;
+}
+header .content .right {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+header .content .right .cart,
+header .content .right .bell,
+header .content .right .user,
+header .content .right .flag {
+  height: 46px;
+  width: 50px;
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  border: 1px solid #F1F1F5;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  cursor: pointer;
+}
+header .content .right .user {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 160px;
+  gap: 15px;
+}
+header .content .right .cart {
+  position: relative;
+}
+header .content .right .cart p {
+  position: absolute;
+  top: -7px;
+  right: -7px;
+  width: 20px;
+  height: 20px;
+  background-color: #FF4D4D;
+  border-radius: 11px;
+  opacity: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  font-weight: bold;
+  color: white;
+}
+
+.header_mobile {
+  display: none;
+}
+
+@media (max-width: 703px) {
+  header .content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+}
+@media (max-width: 480px) {
+  .header_desktop {
+    display: none;
+  }
+  .header_mobile {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 28px;
+  }
+  .header_mobile .right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .header_mobile .left {
+    height: 16px;
+    gap: 14px;
+  }
+  .header_mobile .left img {
+    display: inline-block;
+    vertical-align: top;
+  }
+  .header_mobile .left .logo {
+    width: 120px;
+    margin-left: 14px;
+  }
+  .header_mobile .right {
+    gap: 23px;
+  }
 }/*# sourceMappingURL=style.css.map */

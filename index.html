@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,29 +9,44 @@
     <link rel="stylesheet" href="./CSS/style.css">
     <title>Domenebi.ge</title>
 </head>
+
 <body>
     <div class="container">
-        <header>
-            <img src="./Images/logo.svg" alt="Domenebi Logo" class="logo">
+        <header class="header_desktop">
+            <div class="content">
+                <img src="./Images/logo.svg" alt="Domenebi Logo" class="logo">
+                <div class="right">
+                    <div class="bell">
+                        <img src="./Images/bell.svg" alt="Bell">
+                    </div>
+                    <div class="cart">
+                        <img src="./Images/cart.svg" alt="Cart">
+                        <p class="cartItems">0</p>
+                    </div>
+                    <div class="user">
+                        <img src="./Images/user.png" alt="User">
+                        <p class="user__name">Kancha Co.</p>
+                        <img class="user__dropdown" src="./Images/dropdown.svg" alt="Dropdown" />
+                    </div>
+                    <div class="flag">
+                        <img src="./Images/flag.svg" alt="Flag Of Georgia">
+                    </div>
+                </div>
+            </div>
+        </header>
+        <header class="header_mobile">
+            <div class="left">
+                <img class="brg" src="./Images/burger.svg" alt="Menu">
+                <img src="./Images/logo.svg" alt="Domenebi Logo" class="logo">
+            </div>
             <div class="right">
-                <div class="bell">
-                    <img src="./Images/bell.svg" alt="Bell">
-                </div>
-                <div class="cart">
-                    <img src="./Images/cart.svg" alt="Cart">
-                    <p class="cartItems">0</p>
-                </div>
-                <div class="user">
-                    <img src="./Images/user.png" alt="User">
-                    <p class="user__name">Kancha Co.</p>
-                    <img class="user__dropdown" src="./Images/dropdown.png" alt="Dropdown"/>
-                </div>
-                <div class="flag">
-                    <img src="./Images/flag.svg" alt="Flag Of Georgia">
-                </div>
+                <img src="./Images/mobile_bell.svg" alt="Bell">
+                <img src="./Images/mobile_cart.svg" alt="Cart">
+                <img src="./Images/mobile_user.svg" alt="User">
             </div>
         </header>
     </div>
     <script src="./JS/main.js"></script>
 </body>
+
 </html>
