@@ -3,6 +3,11 @@ import Data from '../Data/data.js'
 let domains = Data.domainList;
 let categories = Data.categories;
 let domainZones = [];
+let prices = domains.map((items) => {
+    return items.price
+})
+prices = prices.sort((a, b) => b - a);
+let highestPrice = prices[0]
 
 // Creating available domains list
 domains.forEach((dom) => {
@@ -161,8 +166,11 @@ let minSymbol = document.querySelector('.minSymbol')
 let maxSymbol = document.querySelector('.maxSymbol')
 let barPrice = document.querySelector('.barPrice')
 let barSymbol = document.querySelector('.barSymbol')
-
-
+let minPriceInp = document.querySelector('#minPrice')
+let maxPriceInp = document.querySelector('#maxPrice')
+let minSymbolInp = document.querySelector('#minSymbol')
+let maxSymbolInp = document.querySelector('#maxSymbol')
+let dat = barPrice.getBoundingClientRect()
 document.addEventListener('mousedown', (e) => {
     add()
 })
@@ -188,7 +196,10 @@ function drag(e) {
             if (maxPrice.style.left === '') {
                 endGreen = 100;
             }
+            minPriceInp.value = parseInt(highestPrice * startGreen / 100)
             barPrice.style.background = `linear-gradient(to right, #696974, #696974 ${startGreen - 1}%,#99CC66 ${startGreen}%,#99CC66 ${endGreen + 5}%, #696974 ${endGreen + 6}%)`
+        } else if (e.clientX < (maxPrice.getBoundingClientRect().x - 13)) {
+            minPrice.value = 0;
         }
     }
     if (e.target.classList.contains('maxPrice')) {
@@ -200,8 +211,10 @@ function drag(e) {
             if (minPrice.style.left === '') {
                 startGreen = 0;
             }
+            maxPriceInp.value = parseInt(highestPrice * endGreen / 100)
             barPrice.style.background = `linear-gradient(to right, #696974, #696974 ${startGreen - 1}%,#99CC66 ${startGreen}%,#99CC66 ${endGreen + 5}%, #696974 ${endGreen + 6}%)`
-
+        } else if (e.clientX > (minPrice.getBoundingClientRect().x + minPrice.getBoundingClientRect().width + 10)) {
+            maxPriceInp.value = highestPrice
         }
     }
     if (e.target.classList.contains('minSymbol')) {
@@ -213,7 +226,10 @@ function drag(e) {
             if (maxSymbol.style.left === '') {
                 endGreen = 100;
             }
+            minSymbolInp.value = parseInt(30 * startGreen / 100)
             barSymbol.style.background = `linear-gradient(to right, #696974, #696974 ${startGreen - 1}%,#99CC66 ${startGreen}%,#99CC66 ${endGreen + 5}%, #696974 ${endGreen + 6}%)`
+        } else if (e.clientX < (maxSymbol.getBoundingClientRect().x - 13)) {
+            minSymbolInp.value = 0
 
         }
     }
@@ -226,7 +242,30 @@ function drag(e) {
             if (minSymbol.style.left === '') {
                 startGreen = 0;
             }
+            maxSymbolInp.value = parseInt(30 * endGreen / 100)
             barSymbol.style.background = `linear-gradient(to right, #696974, #696974 ${startGreen - 1}%,#99CC66 ${startGreen}%,#99CC66 ${endGreen + 5}%, #696974 ${endGreen + 6}%)`
+        } else if (e.clientX > (minSymbol.getBoundingClientRect().x + minSymbol.getBoundingClientRect().width + 10)) {
+            maxSymbolInp.value = 30
+
         }
     }
 }
+
+
+// Inputs
+minPriceInp.addEventListener('keyup', (e) => {
+    if(e.target.value>highestPrice){
+        e.target.value = highestPrice
+    }else if(e.target.value<0){
+        e.target.value = 0
+    }
+    let calc = Math.round(e.target.value / highestPrice * dat.width)
+    minPrice.style.left = `${calc}px`
+    let startGreen = Math.round((e.target.value / highestPrice * 100)*10)/10
+    let endGreen = Math.round((maxPriceInp.value / highestPrice * 100) * 10) / 10
+    if(maxPriceInp.value===''){
+        maxPriceInp.value = highestPrice
+    }
+    barPrice.style.background = `linear-gradient(to right, #696974, #696974 ${startGreen - 1}%,#99CC66 ${startGreen}%,#99CC66 ${endGreen + 5}%, #696974 ${endGreen + 6}%)`
+    console.log(`linear-gradient(to right, #696974, #696974 ${startGreen - 1}%,#99CC66 ${startGreen}%,#99CC66 ${endGreen + 5}%, #696974 ${endGreen + 6}%)`)
+});
