@@ -17,32 +17,60 @@ const domainList = [
     {
         domainName: "example1",
         domainExtension: ".ge",
-        price: 299,
+        price: 578,
         categories: [1, 2]
     },
     {
-        domainName: "example2",
+        domainName: "aexample2",
         domainExtension: ".com.ge",
-        price: 299,
+        price: 301,
         categories: [2, 3]
     },
     {
-        domainName: "example3",
+        domainName: "bexample3",
         domainExtension: ".edu.ge",
         price: 299,
         categories: [2]
     },
     {
-        domainName: "example4",
+        domainName: "cexample4",
         domainExtension: ".ge",
-        price: 299,
+        price: 239,
         categories: [3]
     },
     {
-        domainName: "example5",
+        domainName: "dexample5",
         domainExtension: ".org.ge",
-        price: 299,
+        price: 159,
+        categories: [2, 3]
+    }
+    ,
+    {
+        domainName: "dexample5",
+        domainExtension: ".org.ge",
+        price: 159,
         categories: [1, 3]
+    }
+    ,
+    {
+        domainName: "dexample5",
+        domainExtension: ".org.com",
+        price: 159,
+        categories: [1, 2]
+    }
+    ,
+    {
+        domainName: "dexample5",
+        domainExtension: ".edu.ge",
+        price: 159,
+        categories: [1, 2]
+    }
+    ,
+    {
+        domainName: "dexample5",
+        domainExtension: ".ge",
+        price: 159,
+        categories: [2, 3]
     }
 ]
 

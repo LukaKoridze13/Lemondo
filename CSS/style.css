@@ -117,7 +117,6 @@ header .content .right .cart p {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  font-weight: bold;
   color: white;
 }
 
@@ -437,6 +436,9 @@ main .products .content_desktop .middle .right {
   border: 1px solid #F1F1F5;
   padding: 0px 40px 0px 40px;
 }
+main .products .content_mobile {
+  display: none;
+}
 
 label {
   cursor: pointer;
@@ -526,7 +528,8 @@ input[type=checkbox] {
     max-width: 360px;
     min-width: 150px;
   }
-  .middle .left .max, .middle .left .min {
+  .middle .left .max,
+.middle .left .min {
     max-width: 25px;
     min-width: 0px;
   }
@@ -553,5 +556,54 @@ input[type=checkbox] {
   }
   .banner div {
     border-radius: 0px;
+  }
+  .content_desktop {
+    display: none;
+  }
+  .content_mobile {
+    display: block !important;
+  }
+  .content_mobile .buttons {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 40px !important;
+  }
+  .content_mobile .buttons .mobile_sort,
+.content_mobile .buttons .mobile_filter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px !important;
+    width: 40%;
+    max-width: 160px;
+    background-color: white;
+    height: 40px;
+    border-radius: 10px;
+    border: 1px solid #696974;
+    color: #696974;
+    font-family: "ALK Rounded Nusx Med", sans-serif;
+  }
+  .products {
+    padding: 0px !important;
+    margin-top: 20px !important;
+    margin-bottom: 20px !important;
+  }
+  .cardModel {
+    width: 90% !important;
+    background-color: white !important;
+    margin: 20px auto;
+  }
+  .right {
+    background-color: white !important;
+  }
+}
+@media (max-width: 350px) {
+  .cardModel .leftCard img {
+    width: 22px;
+  }
+  .cardModel .leftCard p {
+    font-size: 12px;
   }
 }/*# sourceMappingURL=style.css.map */
