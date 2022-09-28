@@ -1,3 +1,4 @@
+import data from '../Data/data.js';
 import Data from '../Data/data.js'
 let domains = Data.domainList;
 let categories = Data.categories;
@@ -150,4 +151,82 @@ function drawCards() {
         priceUsd.classList.add('usd');
 
     })
+}
+
+
+// Range Dragging
+let minPrice = document.querySelector('.minPrice')
+let maxPrice = document.querySelector('.maxPrice')
+let minSymbol = document.querySelector('.minSymbol')
+let maxSymbol = document.querySelector('.maxSymbol')
+let barPrice = document.querySelector('.barPrice')
+let barSymbol = document.querySelector('.barSymbol')
+
+
+document.addEventListener('mousedown', (e) => {
+    add()
+})
+document.addEventListener('mouseup', () => {
+    remove()
+})
+// Adding Drag Event
+function add() {
+    document.addEventListener('mousemove', drag)
+}
+// Remove Drag Event
+function remove() {
+    document.removeEventListener('mousemove', drag)
+}
+// Drag
+function drag(e) {
+    if (e.target.classList.contains('minPrice')) {
+        let dat = barPrice.getBoundingClientRect()
+        if (e.clientX > (dat.x + 9) && e.clientX < (maxPrice.getBoundingClientRect().x - 13)) {
+            e.target.style.left = `${e.clientX - dat.x - 10}px`
+            let startGreen = Math.round((parseInt(e.target.style.left) / dat.width * 100) * 10) / 10
+            let endGreen = Math.round((parseInt(maxPrice.style.left) / dat.width * 100) * 10) / 10
+            if (maxPrice.style.left === '') {
+                endGreen = 100;
+            }
+            barPrice.style.background = `linear-gradient(to right, #696974, #696974 ${startGreen - 1}%,#99CC66 ${startGreen}%,#99CC66 ${endGreen + 5}%, #696974 ${endGreen + 6}%)`
+        }
+    }
+    if (e.target.classList.contains('maxPrice')) {
+        let dat = barPrice.getBoundingClientRect()
+        if (e.clientX > (minPrice.getBoundingClientRect().x + minPrice.getBoundingClientRect().width + 10) && e.clientX < (dat.x + dat.width - 12)) {
+            e.target.style.left = `${e.clientX - dat.x - 10}px`
+            let startGreen = Math.round((parseInt(minPrice.style.left) / dat.width * 100) * 10) / 10
+            let endGreen = Math.round((parseInt(e.target.style.left) / dat.width * 100) * 10) / 10
+            if (minPrice.style.left === '') {
+                startGreen = 0;
+            }
+            barPrice.style.background = `linear-gradient(to right, #696974, #696974 ${startGreen - 1}%,#99CC66 ${startGreen}%,#99CC66 ${endGreen + 5}%, #696974 ${endGreen + 6}%)`
+
+        }
+    }
+    if (e.target.classList.contains('minSymbol')) {
+        let dat = barSymbol.getBoundingClientRect()
+        if (e.clientX > (dat.x + 9) && e.clientX < (maxSymbol.getBoundingClientRect().x - 13)) {
+            e.target.style.left = `${e.clientX - dat.x - 10}px`
+            let startGreen = Math.round((parseInt(e.target.style.left) / dat.width * 100) * 10) / 10
+            let endGreen = Math.round((parseInt(maxSymbol.style.left) / dat.width * 100) * 10) / 10
+            if (maxSymbol.style.left === '') {
+                endGreen = 100;
+            }
+            barSymbol.style.background = `linear-gradient(to right, #696974, #696974 ${startGreen - 1}%,#99CC66 ${startGreen}%,#99CC66 ${endGreen + 5}%, #696974 ${endGreen + 6}%)`
+
+        }
+    }
+    if (e.target.classList.contains('maxSymbol')) {
+        let dat = barSymbol.getBoundingClientRect()
+        if (e.clientX > (minSymbol.getBoundingClientRect().x + minSymbol.getBoundingClientRect().width + 10) && e.clientX < (dat.x + dat.width - 12)) {
+            e.target.style.left = `${e.clientX - dat.x - 10}px`
+            let startGreen = Math.round((parseInt(minSymbol.style.left) / dat.width * 100) * 10) / 10
+            let endGreen = Math.round((parseInt(e.target.style.left) / dat.width * 100) * 10) / 10
+            if (minSymbol.style.left === '') {
+                startGreen = 0;
+            }
+            barSymbol.style.background = `linear-gradient(to right, #696974, #696974 ${startGreen - 1}%,#99CC66 ${startGreen}%,#99CC66 ${endGreen + 5}%, #696974 ${endGreen + 6}%)`
+        }
+    }
 }

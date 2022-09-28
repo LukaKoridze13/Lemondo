@@ -409,6 +409,7 @@ main .products .content_desktop .middle .left .priceRangeInp .max p {
   margin-top: -2px;
   box-sizing: border-box;
   text-align: center;
+  pointer-events: none;
 }
 main .products .content_desktop .middle .left .priceRangeInp .min {
   position: absolute;
@@ -606,4 +607,10 @@ input[type=checkbox] {
   .cardModel .leftCard p {
     font-size: 12px;
   }
+}
+main .products .content_desktop .middle .left .boldBlack {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }/*# sourceMappingURL=style.css.map */

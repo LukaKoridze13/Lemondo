@@ -432,7 +432,7 @@ main {
                                 margin-top: -2px;
                                 box-sizing: border-box;
                                 text-align: center;
-
+                                pointer-events: none;
                             }
                         }
 
@@ -603,6 +603,7 @@ input[type=checkbox] {
 
     .content_mobile {
         display: block !important;
+
         .buttons {
             display: flex !important;
             justify-content: center !important;
@@ -630,24 +631,33 @@ input[type=checkbox] {
         margin-top: 20px !important;
         margin-bottom: 20px !important;
     }
-    .cardModel{
+
+    .cardModel {
         width: 90% !important;
         background-color: white !important;
         margin: 20px auto;
     }
-    .right{
+
+    .right {
         background-color: white !important;
     }
 }
+
 @media (max-width:350px) {
-    .cardModel{
-        .leftCard{
-            img{
+    .cardModel {
+        .leftCard {
+            img {
                 width: 22px;
             }
-            p{
+
+            p {
                 font-size: 12px;
             }
         }
     }
+}
+
+
+main .products .content_desktop .middle .left .boldBlack {
+    user-select: none;
 }
