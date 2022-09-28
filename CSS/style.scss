@@ -1,12 +1,15 @@
 // Fonts
 @import url("//cdn.web-fonts.ge/fonts/alk-rounded-nusx-med/css/alk-rounded-nusx-med.min.css");
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 @mixin fontGE {
     font-family: "ALK Rounded Nusx Med", sans-serif;
 }
+
 @mixin fontEN {
     font-family: 'Roboto', sans-serif;
 }
+
 // GLOBAL MIXINS
 @mixin between {
     display: flex;
@@ -14,21 +17,25 @@
     align-items: center;
     flex-wrap: wrap;
 }
+
 @mixin center {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
 }
+
 .content {
     max-width: 1286px;
     width: 100%;
     margin: 0 auto;
 }
+
 // COLORS
 $grey: #696974;
 //Variables
 $content: 1286px;
+
 // Container
 .container {
     width: 100%;
@@ -112,6 +119,7 @@ header {
         }
     }
 }
+
 @media (max-width:480px) {
     .header_desktop {
         display: none;
@@ -120,7 +128,7 @@ header {
     .header_mobile {
         @include between();
         padding: 28px;
-
+        gap: 10px;
         .right {
             @include center();
         }
@@ -145,6 +153,7 @@ header {
         }
     }
 }
+
 // Navigation 
 .nav_desktop {
     background-color: white;
@@ -174,6 +183,7 @@ header {
         }
     }
 }
+
 @media (max-width:1126px) {
     .nav_desktop {
         .content {
@@ -181,8 +191,77 @@ header {
         }
     }
 }
+
 @media (max-width:480px) {
     .nav_desktop {
         display: none;
+    }
+}
+
+// Main
+main {
+    width: 100%;
+    max-width: 1920px;
+    padding-top: 30px;
+    box-sizing: border-box;
+
+    .banner {
+        width: 100%;
+        max-width: $content;
+        height: 180px;
+        border-radius: 15px;
+        margin: 0 auto;
+        @include center();
+        position: relative;
+        overflow: hidden;
+
+        img {
+            width: 1286px;
+            height: 100%;
+        }
+
+        div {
+            width: 1286px;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.26);
+            border-radius: 15px;
+            position: absolute;
+        }
+
+        p {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            text-align: center;
+            color: white;
+            @include fontGE();
+            font-weight: 500;
+            font-size: 36px;
+            line-height: 50px;
+        }
+    }
+}
+
+@media (max-width:480px) {
+    main {
+        padding-top: 0px;
+    }
+
+    .banner {
+        border-radius: 0px !important;
+        height: 120px !important;
+        img {
+            border-radius: 0px;
+        }
+        p{
+            width: 170px !important;
+            line-height: 30px !important;
+            font-size: 20px !important;
+        }
+        div {
+            border-radius: 0px;
+        }
     }
 }

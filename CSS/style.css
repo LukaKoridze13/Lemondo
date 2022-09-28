@@ -107,6 +107,7 @@ header .content .right .cart p {
     align-items: center;
     flex-wrap: wrap;
     padding: 28px;
+    gap: 10px;
   }
   .header_mobile .right {
     display: flex;
@@ -171,5 +172,69 @@ header .content .right .cart p {
 @media (max-width: 480px) {
   .nav_desktop {
     display: none;
+  }
+}
+main {
+  width: 100%;
+  max-width: 1920px;
+  padding-top: 30px;
+  box-sizing: border-box;
+}
+main .banner {
+  width: 100%;
+  max-width: 1286px;
+  height: 180px;
+  border-radius: 15px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  position: relative;
+  overflow: hidden;
+}
+main .banner img {
+  width: 1286px;
+  height: 100%;
+}
+main .banner div {
+  width: 1286px;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.26);
+  border-radius: 15px;
+  position: absolute;
+}
+main .banner p {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  text-align: center;
+  color: white;
+  font-family: "ALK Rounded Nusx Med", sans-serif;
+  font-weight: 500;
+  font-size: 36px;
+  line-height: 50px;
+}
+
+@media (max-width: 480px) {
+  main {
+    padding-top: 0px;
+  }
+  .banner {
+    border-radius: 0px !important;
+    height: 120px !important;
+  }
+  .banner img {
+    border-radius: 0px;
+  }
+  .banner p {
+    width: 170px !important;
+    line-height: 30px !important;
+    font-size: 20px !important;
+  }
+  .banner div {
+    border-radius: 0px;
   }
 }/*# sourceMappingURL=style.css.map */
