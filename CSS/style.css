@@ -6,6 +6,42 @@
   margin: 0 auto;
 }
 
+.input {
+  border-radius: 10px;
+  border: 2px solid #E5E5ED;
+  padding-left: 20px;
+  color: #171D25;
+  font-size: 16px;
+  font-family: "ALK Rounded Nusx Med", sans-serif;
+  /* Chrome, Safari, Edge, Opera */
+  /* Firefox */
+}
+.input:focus {
+  outline: none;
+}
+.input::-moz-placeholder {
+  color: #696974;
+  font-size: 16px;
+  font-family: "ALK Rounded Nusx Med", sans-serif;
+}
+.input:-ms-input-placeholder {
+  color: #696974;
+  font-size: 16px;
+  font-family: "ALK Rounded Nusx Med", sans-serif;
+}
+.input::placeholder {
+  color: #696974;
+  font-size: 16px;
+  font-family: "ALK Rounded Nusx Med", sans-serif;
+}
+.input::-webkit-outer-spin-button, .input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.input[type=number] {
+  -moz-appearance: textfield;
+}
+
 .container {
   width: 100%;
   background-color: #FAFAFB;
@@ -279,6 +315,202 @@ main .products .content_desktop .top .sellDomain {
   text-decoration: underline;
   font-weight: 600;
   cursor: pointer;
+}
+main .products .content_desktop .middle {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+main .products .content_desktop .middle .left {
+  width: 30%;
+  max-width: 380px;
+  min-width: 320px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 35px 35px 35px 30px;
+  background-color: white;
+  border-radius: 15px;
+  border: 1px solid #F1F1F5;
+}
+main .products .content_desktop .middle .left .search {
+  width: 100%;
+  height: 60px;
+}
+main .products .content_desktop .middle .left .boldBlack {
+  color: #171D25;
+  font-size: 16px;
+  font-weight: bold;
+}
+main .products .content_desktop .middle .left .price {
+  margin-top: 35px;
+}
+main .products .content_desktop .middle .left .priceRange {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  margin-top: 15px;
+  width: 100%;
+}
+main .products .content_desktop .middle .left .priceRange input {
+  width: 45%;
+  height: 44px;
+  border: 2px solid #E5E5ED;
+  box-sizing: border-box;
+  padding-right: 15px;
+}
+main .products .content_desktop .middle .left .priceRange input::-moz-placeholder {
+  text-align: right;
+}
+main .products .content_desktop .middle .left .priceRange input:-ms-input-placeholder {
+  text-align: right;
+}
+main .products .content_desktop .middle .left .priceRange input::placeholder {
+  text-align: right;
+}
+main .products .content_desktop .middle .left .priceRangeInp {
+  position: relative;
+  margin-top: 20px;
+  height: 25px;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+main .products .content_desktop .middle .left .priceRangeInp .bar {
+  width: 315px;
+  height: 2px;
+  background: linear-gradient(to right, #696974, #99CC66 0%);
+}
+main .products .content_desktop .middle .left .priceRangeInp .min,
+main .products .content_desktop .middle .left .priceRangeInp .max {
+  width: 25px;
+  height: 25px;
+  border: 2px solid #99CC66;
+  color: #99CC66;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  background-color: white;
+  cursor: -webkit-grab;
+  cursor: grab;
+}
+main .products .content_desktop .middle .left .priceRangeInp .min p,
+main .products .content_desktop .middle .left .priceRangeInp .max p {
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  margin-right: -2px;
+  margin-top: -2px;
+  box-sizing: border-box;
+  text-align: center;
+}
+main .products .content_desktop .middle .left .priceRangeInp .min {
+  position: absolute;
+  left: 0px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+main .products .content_desktop .middle .left .priceRangeInp .max {
+  position: absolute;
+  right: 0px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+main .products .content_desktop .middle .left .domainZone {
+  margin-top: 45px;
+}
+main .products .content_desktop .middle .right {
+  width: 60%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  max-width: 886px;
+  background-color: white;
+  border-radius: 15px;
+  border: 1px solid #F1F1F5;
+  padding: 0px 40px 0px 40px;
+}
+
+label {
+  cursor: pointer;
+  color: #171D25;
+  font-size: 16px;
+  font-weight: 600;
+  margin-left: 15px;
+  font-family: "Roboto", sans-serif;
+}
+
+input[type=checkbox] {
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  accent-color: #99CC66;
+  border: 1px solid #696974 !important;
+}
+
+.cardModel {
+  width: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  border-bottom: 1px solid #F1F1F5;
+}
+.cardModel .leftCard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.cardModel .leftCard img {
+  width: 36px;
+  cursor: pointer;
+}
+.cardModel .leftCard p {
+  font-size: 16px;
+  color: #171D25;
+  font-family: "Roboto", sans-serif;
+  font-weight: 600;
+}
+.cardModel .rightCard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.cardModel .rightCard div .gel {
+  color: #171D25;
+  font-size: 16px;
+  font-weight: bold;
+  font-family: "ALK Rounded Nusx Med", sans-serif;
+  margin-top: 4px;
+}
+.cardModel .rightCard div .usd {
+  color: #696974;
+  font-size: 12px;
+  font-family: "ALK Rounded Nusx Med", sans-serif;
+  margin-top: 4px;
+}
+.cardModel .rightCard img {
+  padding: 10px;
+  background-color: #99CC66;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 @media (max-width: 480px) {
