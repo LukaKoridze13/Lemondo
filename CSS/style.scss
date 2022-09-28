@@ -285,13 +285,11 @@ main {
 
     .products {
         margin-top: 40px;
-
+        padding: 0px 50px;
         .content_desktop {
             max-width: 1286px;
             width: 100%;
             margin: 0 auto;
-            padding: 0px 50px;
-
             .top {
                 @include between();
                 gap: 50px;
@@ -354,7 +352,6 @@ main {
                 justify-content: space-between;
                 flex-wrap: wrap;
                 margin-top: 30px;
-
                 .left {
                     width: 30%;
                     max-width: 380px;
@@ -539,7 +536,28 @@ input[type=checkbox] {
         }
     }
 }
-
+@media (max-width:910px) {
+    .middle .left{
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        width: 100% !important;
+        max-width: none !important;
+        gap: 30px;
+        div{
+            max-width: 360px;
+            min-width: 150px;
+        }
+        .max,.min{
+            max-width: 25px;
+            min-width: 0px;
+        }
+    }
+    .middle .right{
+        margin-top: 20px;
+        width: 100% !important;
+    }
+}
 @media (max-width:480px) {
     main {
         padding-top: 0px;
