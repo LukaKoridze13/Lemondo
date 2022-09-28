@@ -217,6 +217,69 @@ main .banner p {
   font-size: 36px;
   line-height: 50px;
 }
+main .products {
+  margin-top: 40px;
+}
+main .products .content_desktop {
+  max-width: 1286px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0px 50px;
+}
+main .products .content_desktop .top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 50px;
+}
+main .products .content_desktop .top .domenebiMarketze {
+  color: #696974;
+  font-family: "ALK Rounded Nusx Med", sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+}
+main .products .content_desktop .top .domenebiMarketze span {
+  font-weight: bold;
+  color: black;
+  font-size: 16px;
+}
+main .products .content_desktop .top .sort {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 18px;
+  font-size: 14px;
+  color: #696974;
+  font-family: "ALK Rounded Nusx Med", sans-serif;
+}
+main .products .content_desktop .top .sort .sorters {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+main .products .content_desktop .top .sort .sorters .activeSort {
+  color: #99CC66;
+}
+main .products .content_desktop .top .sort .sorters p {
+  cursor: pointer;
+}
+main .products .content_desktop .top .sort .sorters .date p {
+  margin-left: 5px;
+}
+main .products .content_desktop .top .sort .sortireba {
+  font-weight: bold;
+  color: black;
+}
+main .products .content_desktop .top .sellDomain {
+  color: #171725;
+  text-decoration: underline;
+  font-weight: 600;
+  cursor: pointer;
+}
 
 @media (max-width: 480px) {
   main {

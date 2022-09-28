@@ -45,3 +45,5 @@ const domainList = [
         categories: [1, 3]
     }
 ]
+
+export default {categories, domainList}

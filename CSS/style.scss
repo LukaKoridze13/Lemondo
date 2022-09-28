@@ -45,6 +45,7 @@ $content: 1286px;
     align-items: center;
     flex-direction: column;
 }
+
 // Header
 header {
     width: 100%;
@@ -108,9 +109,11 @@ header {
         }
     }
 }
+
 .header_mobile {
     display: none;
 }
+
 // RESPONSIVE FOR HEADER
 @media (max-width:703px) {
     header {
@@ -129,6 +132,7 @@ header {
         @include between();
         padding: 28px;
         gap: 10px;
+
         .right {
             @include center();
         }
@@ -242,6 +246,72 @@ main {
             line-height: 50px;
         }
     }
+
+    .products {
+        margin-top: 40px;
+
+        .content_desktop {
+            max-width: 1286px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0px 50px;
+            .top {
+                @include between();
+                gap: 50px;
+                .domenebiMarketze {
+                    color: $grey;
+                    @include fontGE();
+                    font-size: 16px;
+                    font-weight: bold;
+
+                    span {
+                        font-weight: bold;
+                        color: black;
+                        font-size: 16px;
+                    }
+                }
+
+                .sort {
+                    @include between();
+                    gap: 18px;
+                    font-size: 14px;
+                    color: $grey;
+                    @include fontGE();
+
+                    .sorters {
+                        @include between();
+                        gap: 18px;
+
+                        .activeSort {
+                            color: #99CC66;
+                        }
+
+                        p {
+                            cursor: pointer;
+                        }
+
+                        .date {
+                            p {
+                                margin-left: 5px;
+                            }
+                        }
+                    }
+
+                    .sortireba {
+                        font-weight: bold;
+                        color: black;
+                    }
+                }
+
+                .sellDomain {
+                    color: #171725;
+                    text-decoration: underline;
+                    font-weight: 600;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
 }
 
 @media (max-width:480px) {
@@ -252,16 +322,20 @@ main {
     .banner {
         border-radius: 0px !important;
         height: 120px !important;
+
         img {
             border-radius: 0px;
         }
-        p{
+
+        p {
             width: 170px !important;
             line-height: 30px !important;
             font-size: 20px !important;
         }
+
         div {
             border-radius: 0px;
         }
     }
+
 }
