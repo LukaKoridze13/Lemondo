@@ -1,3 +1,12 @@
+// Fonts
+@import url("//cdn.web-fonts.ge/fonts/alk-rounded-nusx-med/css/alk-rounded-nusx-med.min.css");
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@mixin fontGE {
+    font-family: "ALK Rounded Nusx Med", sans-serif;
+}
+@mixin fontEN {
+    font-family: 'Roboto', sans-serif;
+}
 // GLOBAL MIXINS
 @mixin between {
     display: flex;
@@ -5,26 +14,21 @@
     align-items: center;
     flex-wrap: wrap;
 }
-
 @mixin center {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
 }
-
 .content {
     max-width: 1286px;
     width: 100%;
     margin: 0 auto;
 }
-
 // COLORS
-
-
-
-
-
+$grey: #696974;
+//Variables
+$content: 1286px;
 // Container
 .container {
     width: 100%;
@@ -34,9 +38,6 @@
     align-items: center;
     flex-direction: column;
 }
-
-
-
 // Header
 header {
     width: 100%;
@@ -44,11 +45,13 @@ header {
     background-color: white;
     border-bottom: 1px solid rgba(0, 0, 0, 0.075);
     padding: 0px 50px;
+
     .content {
         padding-top: 28px;
         padding-bottom: 20px;
         @include between();
         gap: 50px;
+
         .right {
             @include between();
             gap: 20px;
@@ -70,6 +73,11 @@ header {
                 @include center();
                 width: 160px;
                 gap: 15px;
+
+                p {
+                    @include fontEN();
+                    color: $grey;
+                }
             }
 
             .cart {
@@ -96,40 +104,85 @@ header {
 .header_mobile {
     display: none;
 }
-
 // RESPONSIVE FOR HEADER
 @media (max-width:703px) {
-    header{
-        .content{
+    header {
+        .content {
             @include center();
         }
     }
 }
-
 @media (max-width:480px) {
-    .header_desktop{
+    .header_desktop {
         display: none;
     }
-    .header_mobile{
+
+    .header_mobile {
         @include between();
         padding: 28px;
-        .right{
+
+        .right {
             @include center();
         }
-        .left{
+
+        .left {
             height: 16px;
             gap: 14px;
-            img{
+
+            img {
                 display: inline-block;
                 vertical-align: top;
             }
-            .logo{
+
+            .logo {
                 width: 120px;
                 margin-left: 14px;
             }
         }
-        .right{
+
+        .right {
             gap: 23px;
         }
+    }
+}
+// Navigation 
+.nav_desktop {
+    background-color: white;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.075);
+    width: 100%;
+    max-width: 1920px;
+    padding-left: 50px;
+    padding-right: 50px;
+
+    .content {
+        padding: 19px 0px 23px 0px;
+        @include between();
+        gap: 50px;
+
+        div {
+            ul {
+                @include between();
+                gap: 29px;
+
+                li {
+                    color: $grey;
+                    font-size: 16px;
+                    @include fontGE();
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
+@media (max-width:1126px) {
+    .nav_desktop {
+        .content {
+            @include center()
+        }
+    }
+}
+@media (max-width:480px) {
+    .nav_desktop {
+        display: none;
     }
 }

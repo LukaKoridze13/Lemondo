@@ -1,3 +1,5 @@
+@import url("//cdn.web-fonts.ge/fonts/alk-rounded-nusx-med/css/alk-rounded-nusx-med.min.css");
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 .content {
   max-width: 1286px;
   width: 100%;
@@ -58,6 +60,10 @@ header .content .right .user {
   flex-wrap: wrap;
   width: 160px;
   gap: 15px;
+}
+header .content .right .user p {
+  font-family: "Roboto", sans-serif;
+  color: #696974;
 }
 header .content .right .cart {
   position: relative;
@@ -122,5 +128,48 @@ header .content .right .cart p {
   }
   .header_mobile .right {
     gap: 23px;
+  }
+}
+.nav_desktop {
+  background-color: white;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.075);
+  width: 100%;
+  max-width: 1920px;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+.nav_desktop .content {
+  padding: 19px 0px 23px 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 50px;
+}
+.nav_desktop .content div ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 29px;
+}
+.nav_desktop .content div ul li {
+  color: #696974;
+  font-size: 16px;
+  font-family: "ALK Rounded Nusx Med", sans-serif;
+  cursor: pointer;
+}
+
+@media (max-width: 1126px) {
+  .nav_desktop .content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+}
+@media (max-width: 480px) {
+  .nav_desktop {
+    display: none;
   }
 }/*# sourceMappingURL=style.css.map */
