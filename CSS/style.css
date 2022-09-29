@@ -117,7 +117,6 @@ header .content .right .cart p {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  font-weight: bold;
   color: white;
 }
 
@@ -255,12 +254,12 @@ main .banner p {
 }
 main .products {
   margin-top: 40px;
+  padding: 0px 50px;
 }
 main .products .content_desktop {
   max-width: 1286px;
   width: 100%;
   margin: 0 auto;
-  padding: 0px 50px;
 }
 main .products .content_desktop .top {
   display: flex;
@@ -410,6 +409,7 @@ main .products .content_desktop .middle .left .priceRangeInp .max p {
   margin-top: -2px;
   box-sizing: border-box;
   text-align: center;
+  pointer-events: none;
 }
 main .products .content_desktop .middle .left .priceRangeInp .min {
   position: absolute;
@@ -436,6 +436,9 @@ main .products .content_desktop .middle .right {
   border-radius: 15px;
   border: 1px solid #F1F1F5;
   padding: 0px 40px 0px 40px;
+}
+main .products .content_mobile {
+  display: none;
 }
 
 label {
@@ -513,6 +516,29 @@ input[type=checkbox] {
   flex-wrap: wrap;
 }
 
+@media (max-width: 910px) {
+  .middle .left {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    max-width: none !important;
+    gap: 30px;
+  }
+  .middle .left div {
+    max-width: 360px;
+    min-width: 150px;
+  }
+  .middle .left .max,
+.middle .left .min {
+    max-width: 25px;
+    min-width: 0px;
+  }
+  .middle .right {
+    margin-top: 20px;
+    width: 100% !important;
+  }
+}
 @media (max-width: 480px) {
   main {
     padding-top: 0px;
@@ -532,4 +558,59 @@ input[type=checkbox] {
   .banner div {
     border-radius: 0px;
   }
+  .content_desktop {
+    display: none;
+  }
+  .content_mobile {
+    display: block !important;
+  }
+  .content_mobile .buttons {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 40px !important;
+  }
+  .content_mobile .buttons .mobile_sort,
+.content_mobile .buttons .mobile_filter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px !important;
+    width: 40%;
+    max-width: 160px;
+    background-color: white;
+    height: 40px;
+    border-radius: 10px;
+    border: 1px solid #696974;
+    color: #696974;
+    font-family: "ALK Rounded Nusx Med", sans-serif;
+  }
+  .products {
+    padding: 0px !important;
+    margin-top: 20px !important;
+    margin-bottom: 20px !important;
+  }
+  .cardModel {
+    width: 90% !important;
+    background-color: white !important;
+    margin: 20px auto;
+  }
+  .right {
+    background-color: white !important;
+  }
+}
+@media (max-width: 350px) {
+  .cardModel .leftCard img {
+    width: 22px;
+  }
+  .cardModel .leftCard p {
+    font-size: 12px;
+  }
+}
+main .products .content_desktop .middle .left .boldBlack {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }/*# sourceMappingURL=style.css.map */

@@ -137,7 +137,6 @@ header {
                     border-radius: 11px;
                     opacity: 1;
                     @include center();
-                    font-weight: bold;
                     color: white;
                 }
             }
@@ -285,12 +284,12 @@ main {
 
     .products {
         margin-top: 40px;
+        padding: 0px 50px;
 
         .content_desktop {
             max-width: 1286px;
             width: 100%;
             margin: 0 auto;
-            padding: 0px 50px;
 
             .top {
                 @include between();
@@ -433,7 +432,7 @@ main {
                                 margin-top: -2px;
                                 box-sizing: border-box;
                                 text-align: center;
-
+                                pointer-events: none;
                             }
                         }
 
@@ -468,6 +467,10 @@ main {
                 }
             }
         }
+
+        .content_mobile {
+            display: none;
+        }
     }
 }
 
@@ -494,10 +497,11 @@ input[type=checkbox] {
     height: 80px;
     @include between();
     border-bottom: 1px solid #F1F1F5;
+
     .leftCard {
         @include center();
         gap: 20px;
-        img { 
+        img {
             width: 36px;
             cursor: pointer;
         }
@@ -540,6 +544,33 @@ input[type=checkbox] {
     }
 }
 
+@media (max-width:910px) {
+    .middle .left {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        width: 100% !important;
+        max-width: none !important;
+        gap: 30px;
+
+        div {
+            max-width: 360px;
+            min-width: 150px;
+        }
+
+        .max,
+        .min {
+            max-width: 25px;
+            min-width: 0px;
+        }
+    }
+
+    .middle .right {
+        margin-top: 20px;
+        width: 100% !important;
+    }
+}
+
 @media (max-width:480px) {
     main {
         padding-top: 0px;
@@ -564,4 +595,67 @@ input[type=checkbox] {
         }
     }
 
+    .content_desktop {
+        display: none;
+    }
+
+    .content_mobile {
+        display: block !important;
+
+        .buttons {
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            gap: 40px !important;
+
+            .mobile_sort,
+            .mobile_filter {
+                @include center();
+                gap: 20px !important;
+                width: 40%;
+                max-width: 160px;
+                background-color: white;
+                height: 40px;
+                border-radius: 10px;
+                border: 1px solid $grey;
+                color: $grey;
+                @include fontGE()
+            }
+        }
+    }
+
+    .products {
+        padding: 0px !important;
+        margin-top: 20px !important;
+        margin-bottom: 20px !important;
+    }
+
+    .cardModel {
+        width: 90% !important;
+        background-color: white !important;
+        margin: 20px auto;
+    }
+
+    .right {
+        background-color: white !important;
+    }
+}
+
+@media (max-width:350px) {
+    .cardModel {
+        .leftCard {
+            img {
+                width: 22px;
+            }
+
+            p {
+                font-size: 12px;
+            }
+        }
+    }
+}
+
+
+main .products .content_desktop .middle .left .boldBlack {
+    user-select: none;
 }

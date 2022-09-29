@@ -95,40 +95,44 @@
                     </div>
                     <div class="middle">
                         <div class="left">
-                            <input class="search input" type="search" placeholder="სახელით ძიება">
-                            <p class="price boldBlack">ფასი</p>
-                            <div class="priceRange">
-                                <input class="input" type="number" placeholder="₾" min="0" max="50000">
-                                <input class="input" type="number" placeholder="₾" min="50" max="50000">
-                            </div>
-                            <div class="priceRangeInp">
-                                <div class="bar"></div>
-                                <div class="min">
-                                    <p>||</p>
+                            <div>
+                                <input class="search input" type="search" placeholder="სახელით ძიება">
+                                <p class="price boldBlack">ფასი</p>
+                                <div class="priceRange">
+                                    <input class="input" id="minPrice" type="number" placeholder="₾" min="0" max="50000">
+                                    <input class="input" id="maxPrice" type="number" placeholder="₾" min="50" max="50000">
                                 </div>
-                                <div class="max">
-                                    <p>||</p>
+                                <div class="priceRangeInp">
+                                    <div class="bar barPrice"></div>
+                                    <div class="min minPrice draggable">
+                                        <p>||</p>
+                                    </div>
+                                    <div class="max maxPrice draggable">
+                                        <p>||</p>
+                                    </div>
+                                </div>
+                                <p class="symbols boldBlack">სიმბოლოების რაოდენობა</p>
+                                <div class="priceRange">
+                                    <input class="input" id="minSymbol" type="number">
+                                    <input class="input" id="maxSymbol" type="number">
+                                </div>
+                                <div class="priceRangeInp">
+                                    <div class="bar barSymbol"></div>
+                                    <div class="min minSymbol draggable">
+                                        <p>||</p>
+                                    </div>
+                                    <div class="max maxSymbol draggable">
+                                        <p>||</p>
+                                    </div>
                                 </div>
                             </div>
-                            <p class="symbols boldBlack">სიმბოლოების რაოდენობა</p>
-                            <div class="priceRange">
-                                <input class="input" type="number" >
-                                <input class="input" type="number" >
-                            </div>
-                            <div class="priceRangeInp">
-                                <div class="bar"></div>
-                                <div class="min">
-                                    <p>||</p>
+                            <div>
+                                <p class="categories boldBlack">კატეგორიები</p>
+                                <div class="categoriesDiv">
                                 </div>
-                                <div class="max">
-                                    <p>||</p>
+                                <p class="domainZone boldBlack">დომენის ზონა</p>
+                                <div class="domainZones">
                                 </div>
-                            </div>
-                            <p class="categories boldBlack">კატეგორიები</p>
-                            <div class="categoriesDiv">
-                            </div>
-                            <p class="domainZone boldBlack">დომენის ზონა</p>
-                            <div class="domainZones">
                             </div>
                         </div>
                         <div class="right">
@@ -136,7 +140,13 @@
                         </div>
                     </div>
                 </div>
-
+                <div class="content_mobile">
+                    <div class="buttons"><div class="mobile_sort">სორტირება <img src="./Images/sort.png" alt="Sort"></div>
+                    <div class="mobile_filter">გაფილტვრა <img src="./Images/filter.png" alt="Filter"></div></div>
+                    <div class="right">
+                    
+                    </div>
+                </div>
             </section>
         </main>
     </div>
