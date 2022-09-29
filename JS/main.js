@@ -388,6 +388,34 @@ function filter() {
             }
         }
     })
+    filteredDomains.forEach((item) => {
+        if (item.price < filters.priceMin || item.price > filters.priceMax) {
+            newMassive.splice(newMassive.indexOf(item), 1)
+        }
+    })
+    filteredDomains.forEach((item) => {
+        let web = item.domainName + item.domainExtension
+        if (web.length < filters.symbolMin || web.length > filters.symbolMax) {
+            newMassive.splice(newMassive.indexOf(item), 1)
+        }
+    })
+    
+    if(0 < filters.categories.length < 3){
+        filteredDomains.forEach((item) => {
+            let includes = false;
+            item.categories.forEach((category) => {
+                filters.categories.forEach((filter) => {
+                    if(filter===category){
+                        includes = true;
+                    }
+                })
+            })
+            if(!includes){
+                newMassive.splice(newMassive.indexOf(item), 1)
+            }
+        })
+    }
+
     filteredDomains = newMassive
     drawSearchedCards();
 
