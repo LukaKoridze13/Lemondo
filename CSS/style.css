@@ -389,27 +389,16 @@ main .products .content_desktop .middle .left .priceRangeInp .min,
 main .products .content_desktop .middle .left .priceRangeInp .max {
   width: 25px;
   height: 25px;
-  border: 2px solid #99CC66;
   color: #99CC66;
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  background-color: white;
-  cursor: -webkit-grab;
-  cursor: grab;
-}
-main .products .content_desktop .middle .left .priceRangeInp .min p,
-main .products .content_desktop .middle .left .priceRangeInp .max p {
-  font-size: 10px;
-  font-weight: 900;
-  letter-spacing: 2px;
-  margin-right: -2px;
-  margin-top: -2px;
-  box-sizing: border-box;
-  text-align: center;
-  pointer-events: none;
+  cursor: pointer;
+  background: white;
+  background-image: url("../Images/pause.png");
+  background-size: cover;
 }
 main .products .content_desktop .middle .left .priceRangeInp .min {
   position: absolute;

@@ -17,13 +17,13 @@ const domainList = [
     {
         domainName: "example1",
         domainExtension: ".ge",
-        price: 578,
+        price: 378,
         categories: [1, 2]
     },
     {
         domainName: "aexample2",
         domainExtension: ".com.ge",
-        price: 301,
+        price: 401,
         categories: [2, 3]
     },
     {
@@ -35,7 +35,7 @@ const domainList = [
     {
         domainName: "cexample4",
         domainExtension: ".ge",
-        price: 239,
+        price: 339,
         categories: [3]
     },
     {
@@ -48,21 +48,21 @@ const domainList = [
     {
         domainName: "dexample5",
         domainExtension: ".org.ge",
-        price: 159,
+        price: 169,
         categories: [1, 3]
     }
     ,
     {
         domainName: "dexample5",
         domainExtension: ".org.com",
-        price: 159,
+        price: 199,
         categories: [1, 2]
     }
     ,
     {
         domainName: "dexample5",
         domainExtension: ".edu.ge",
-        price: 159,
+        price: 179,
         categories: [1, 2]
     }
     ,
