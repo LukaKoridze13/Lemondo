@@ -46,28 +46,28 @@ const domainList = [
     }
     ,
     {
-        domainName: "dexample5",
+        domainName: "dexample6",
         domainExtension: ".org.ge",
         price: 169,
         categories: [1, 3]
     }
     ,
     {
-        domainName: "dexample5",
+        domainName: "dexample7",
         domainExtension: ".org.com",
         price: 199,
         categories: [1, 2]
     }
     ,
     {
-        domainName: "dexample5",
+        domainName: "dexample8",
         domainExtension: ".edu.ge",
         price: 179,
         categories: [1, 2]
     }
     ,
     {
-        domainName: "dexample5",
+        domainName: "fexample9",
         domainExtension: ".ge",
         price: 159,
         categories: [2, 3]

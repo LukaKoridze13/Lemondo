@@ -1,23 +1,37 @@
-import data from '../Data/data.js';
 import Data from '../Data/data.js'
 let domains = Data.domainList;
 let categories = Data.categories;
+let not = true;
+if (not) {
+    domains = domains.map((item) => {
+        item.categories.map((category) => {
+            categories.map((it) => {
+                if (category === it.id) {
+                    item.categories.push(it.name)
+                }
+            })
+        })
+        return item
+    })
+}
+const DOMAINS = domains;
 let domainZones = [];
-let filters = {
-    name: null,
-    priceMin: null,
-    priceMax: null,
-    symbolMin: null,
-    symbolMax: null,
-    categories: [],
-    zone: []
-};
+let filteredDomains = domains
+
 let prices = domains.map((items) => {
     return items.price
 })
 prices = prices.sort((a, b) => b - a);
 let highestPrice = prices[0]
-
+let filters = {
+    name: 'a',
+    priceMin: 0,
+    priceMax: highestPrice,
+    symbolMin: 0,
+    symbolMax: 30,
+    categories: [],
+    zone: []
+};
 // Creating available domains list
 domains.forEach((dom) => {
     if (!domainZones.includes(dom.domainExtension)) {
@@ -71,7 +85,7 @@ categories.forEach((category) => {
             if (!filters.categories.includes(category.name)) {
                 filters.categories.push(category.name)
             }
-        }else{
+        } else {
             filters.categories.splice(filters.categories.indexOf(category.name), 1);
         }
         filter();
@@ -254,7 +268,7 @@ maxPriceInp.addEventListener('keyup', (e) => {
     }
     barPrice.style.background = `linear-gradient(to right, #696974, #696974 ${startGreen - 1}%,#99CC66 ${startGreen}%,#99CC66 ${endGreen + 5}%, #696974 ${endGreen + 6}%)`
 
-    filters.priceMax = maxPriceInp.value
+    filters.priceMax = parseInt(maxPriceInp.value)
     filter();
 
 
@@ -273,7 +287,7 @@ minSymbolInp.addEventListener('keyup', (e) => {
         maxSymbolInp.value = 30
     }
     barSymbol.style.background = `linear-gradient(to right, #696974, #696974 ${startGreen - 1}%,#99CC66 ${startGreen}%,#99CC66 ${endGreen + 5}%, #696974 ${endGreen + 6}%)`
-    filters.symbolMin = minSymbolInp.value
+    filters.symbolMin = parseInt(minSymbolInp.value)
     filter();
 
 });
@@ -291,7 +305,7 @@ maxSymbolInp.addEventListener('keyup', (e) => {
         minSymbolInp.value = 0
     }
     barSymbol.style.background = `linear-gradient(to right, #696974, #696974 ${startGreen - 1}%,#99CC66 ${startGreen}%,#99CC66 ${endGreen + 5}%, #696974 ${endGreen + 6}%)`
-    filters.symbolMax = maxSymbolInp.value
+    filters.symbolMax = parseInt(maxSymbolInp.value)
     filter();
 });
 
@@ -304,31 +318,31 @@ let alphabet = document.querySelector('.sorters .alphabet')
 let reversed = false;
 deadline.addEventListener('click', () => {
     if (!reversed) {
-        domains = domains.reverse();
-        drawCards();
+        filteredDomains = filteredDomains.reverse();
+        drawSearchedCards();
         reversed = !reversed;
     }
 })
 date.addEventListener('click', () => {
     if (reversed) {
-        domains = domains.reverse();
-        drawCards();
+        filteredDomains = filteredDomains.reverse();
+        drawSearchedCards();
         reversed = !reversed;
     }
 })
 price.addEventListener('click', () => {
-    domains = domains.sort((a, b) => {
+    filteredDomains = filteredDomains.sort((a, b) => {
         return a.price - b.price
     })
-    drawCards();
+    drawSearchedCards();
 })
 alphabet.addEventListener('click', () => {
-    domains = domains.sort(function (a, b) {
+    filteredDomains = filteredDomains.sort(function (a, b) {
         var textA = a.domainName.toUpperCase();
         var textB = b.domainName.toUpperCase();
         return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
     });
-    drawCards();
+    drawSearchedCards();
 })
 
 
@@ -347,7 +361,36 @@ search.addEventListener('change', (e) => {
 
 
 function filter() {
-    console.log(filters)
+    if (filters.minPrice === undefined) {
+        filters.minPrice = 0;
+    }
+    if (filters.maxPrice === undefined) {
+        filters.maxPrice = highestPrice;
+    }
+    if (filters.minSymbol === undefined) {
+        filters.minSymbol = 0;
+    }
+    if (filters.maxSymbol === undefined) {
+        filters.maxSymbol = 30;
+    }
+    let newMassive = []
+    filteredDomains.forEach((item) => {
+        let web = item.domainName + item.domainExtension
+        if (web.includes(filters.name)) {
+            newMassive.push(item)
+        }
+    })
+    DOMAINS.forEach((item) => {
+        let web = item.domainName + item.domainExtension
+        if (web.includes(filters.name)) {
+            if (!newMassive.includes(item)) {
+                newMassive.push(item)
+            }
+        }
+    })
+    filteredDomains = newMassive
+    drawSearchedCards();
+
 }
 
 
@@ -505,3 +548,4 @@ function drawSearchedCards() {
 
     })
 }
+
