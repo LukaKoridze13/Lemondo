@@ -408,7 +408,7 @@ main .products .content_desktop .middle .left .priceRangeInp .min {
 }
 main .products .content_desktop .middle .left .priceRangeInp .max {
   position: absolute;
-  right: 0px;
+  right: -12.5px;
   top: 50%;
   transform: translateY(-50%);
 }
