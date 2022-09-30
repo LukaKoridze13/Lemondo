@@ -63,7 +63,7 @@ const domainList = [
         domainName: "dexample8",
         domainExtension: ".edu.ge",
         price: 179,
-        categories: [1, 2]
+        categories: [1]
     }
     ,
     {

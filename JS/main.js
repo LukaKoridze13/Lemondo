@@ -44,7 +44,7 @@ let filters = {
     priceMin: 0,
     priceMax: highestPrice,
     symbolMin: 0,
-    symbolMax: 30,
+    symbolMax: highestSymbol,
     categories: [],
     zone: []
 };
@@ -660,13 +660,44 @@ maxSymbolInp.addEventListener('click', () => {
 
 
 
-
 function filter() {
-    console.log(filters)
+    visibleDomains = [];
+    domains.forEach((test) => {
+        let valid = true;
+        let name = test.domainName + test.domainExtension
+        if (test.price > filters.priceMax || test.price < filters.priceMin) {
+            valid = false;
+        }
+        if (name.length > filters.symbolMax || name.length < filters.symbolMin) {
+            valid = false;
+        }
+        if (filters.categories.length !== 0) {
+            let includes = false;
+            test.categories.forEach((category) => {
+                filters.categories.forEach((param) => {
+                    if (category === param) {
+                        includes = true;
+                    }
+                })
+            })
+            if (!includes) {
+                valid = false;
+            }
+        }
+        if (filters.zone.length !== 0) {
+            if (!filters.zone.includes(test.domainExtension)) {
+                valid = false;
+            }
+        }
+        if (!name.includes(filters.name) && filters.name !== null ) {
+            valid = false;
+        }
+        if (valid) {
+            visibleDomains.push(test);
+        }
+    })
     drawCards(visibleDomains)
 }
-
-
 function drawCards(data) {
     parent.innerHTML = '';
     parentMobile.innerHTML = '';
