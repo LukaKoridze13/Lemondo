@@ -416,7 +416,7 @@ main .products .content_desktop .middle .left .domainZone {
   margin-top: 45px;
 }
 main .products .content_desktop .middle .right {
-  width: 60%;
+  width: 65%;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
@@ -424,7 +424,7 @@ main .products .content_desktop .middle .right {
   background-color: white;
   border-radius: 15px;
   border: 1px solid #F1F1F5;
-  padding: 0px 40px 0px 40px;
+  padding: 20px 20px 20px 20px;
 }
 main .products .content_mobile {
   display: none;
@@ -451,51 +451,56 @@ input[type=checkbox] {
 .cardModel {
   width: 100%;
   height: 80px;
+  padding: 0px 20px;
+}
+.cardModel .contentbox {
+  width: 100%;
+  height: 80px;
+  border-bottom: 1px solid #F1F1F5;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  border-bottom: 1px solid #F1F1F5;
 }
-.cardModel .leftCard {
+.cardModel .contentbox .leftCard {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   gap: 20px;
 }
-.cardModel .leftCard img {
+.cardModel .contentbox .leftCard img {
   width: 36px;
   cursor: pointer;
 }
-.cardModel .leftCard p {
+.cardModel .contentbox .leftCard p {
   font-size: 16px;
   color: #171D25;
   font-family: "Roboto", sans-serif;
   font-weight: 600;
 }
-.cardModel .rightCard {
+.cardModel .contentbox .rightCard {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   gap: 20px;
 }
-.cardModel .rightCard div .gel {
+.cardModel .contentbox .rightCard div .gel {
   color: #171D25;
   font-size: 16px;
   font-weight: bold;
   font-family: "ALK Rounded Nusx Med", sans-serif;
   margin-top: 4px;
 }
-.cardModel .rightCard div .usd {
+.cardModel .contentbox .rightCard div .usd {
   color: #696974;
   font-size: 12px;
   font-family: "ALK Rounded Nusx Med", sans-serif;
   margin-top: 4px;
 }
-.cardModel .rightCard img {
-  padding: 10px;
+.cardModel .contentbox .rightCard img {
+  padding: 15px;
   background-color: #99CC66;
   border-radius: 10px;
   cursor: pointer;
@@ -503,6 +508,19 @@ input[type=checkbox] {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+}
+
+.adder {
+  padding: 0px 0px 0px 15px;
+  background-color: #99CC66;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  color: white;
+  font-family: "ALK Rounded Nusx Med", sans-serif;
 }
 
 @media (max-width: 910px) {

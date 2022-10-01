@@ -12,7 +12,7 @@ domains.forEach((dom) => {
 })
 
 // Adding Categories to domains
-domains = domains.map((item) => {
+domains = domains.map((item,id) => {
     item.categories.map((category) => {
         categories.map((it) => {
             if (category === it.id) {
@@ -20,6 +20,7 @@ domains = domains.map((item) => {
             }
         })
     })
+    item.uniqueID=id
     return item
 })
 
@@ -716,12 +717,13 @@ function drawCards(data) {
         let div = document.createElement('div');
         let cart = document.createElement('img');
         cart.src = '../Images/cart_white.svg';
-
+        let contentbox = document.createElement('div');
 
         // Appends
         parent.appendChild(card)
-        card.appendChild(left);
-        card.appendChild(right);
+        card.appendChild(contentbox)
+        contentbox.appendChild(left);
+        contentbox.appendChild(right);
         left.appendChild(img);
         left.appendChild(name);
         right.appendChild(div);
@@ -731,11 +733,58 @@ function drawCards(data) {
 
         // CLassing
         card.classList.add('cardModel');
+        contentbox.classList.add('contentbox');
         left.classList.add('leftCard');
         right.classList.add('rightCard');
         priceGel.classList.add('gel');
         priceUsd.classList.add('usd');
 
+        let add = document.createElement('div')
+        let p = document.createElement('p')
+        p.innerText = 'დამატება'
+        add.appendChild(p)
+        let cartCopy = document.createElement('img');
+        cartCopy.src = '../Images/cart_white.svg';
+        add.appendChild(cartCopy)
+        add.classList.add('adder')
+        add.style.display='flex'
+        add.style.alignItems ='center'
+
+        let basket = document.createElement('div');
+        basket.style.width = '125px'
+        basket.style.height = '36px'
+        basket.style.backgroundColor = '#F5F5F8'
+        basket.style.borderRadius='10px'
+        let mark = document.createElement('img');
+        mark.src = '../Images/mark.svg'
+        let text = document.createElement('p');
+        text.innerHTML = 'კალათაშია'
+        text.style.fontSize = '14px';
+        text.style.color = '#696974'
+        text.style.fontFamily =
+
+        add.addEventListener('click',()=>{
+            domains.forEach((pr)=>{
+                if(pr.uniqueID === product.uniqueID){
+                    pr.inCart=true;
+                }
+            })
+        })
+        // Hovering Cards
+        card.addEventListener('mouseenter', ()=>{
+            card.style.backgroundColor = '#F5F5F8'
+            card.style.borderRadius ='10px'
+            img.src ='../Images/hover_drop.svg'          
+            cart.remove()
+            right.appendChild(add)
+        })
+        card.addEventListener('mouseleave', ()=>{
+            card.style.backgroundColor = 'white'
+            card.style.borderRadius = '0px'
+            img.src = '../Images/btn_dropdown.svg'
+            add.remove()
+            right.appendChild(cart)
+        })
     })
     data.forEach((product, index) => {
         let card = document.createElement('div');
