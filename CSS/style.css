@@ -457,6 +457,7 @@ input[type=checkbox] {
   width: 100%;
   height: 80px;
   border-bottom: 1px solid #F1F1F5;
+  border-top: 1px solid #F1F1F5;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -605,6 +606,152 @@ input[type=checkbox] {
   }
   .right {
     background-color: white !important;
+  }
+  .mobileSortJS .sort {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 18px;
+    font-size: 14px;
+    color: #696974;
+    font-family: "ALK Rounded Nusx Med", sans-serif;
+  }
+  .mobileSortJS .sort .sorters {
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 18px;
+  }
+  .mobileSortJS .sort .sorters .activeSort {
+    color: #99CC66;
+  }
+  .mobileSortJS .sort .sorters p {
+    cursor: pointer;
+  }
+  .mobileSortJS .sort .sorters .date p {
+    margin-left: 5px;
+  }
+  .mobileSortJS .sort .sortireba {
+    font-weight: bold;
+    color: black;
+    margin: 0 auto;
+  }
+  .mobileFilterJS {
+    width: 100%;
+  }
+  .mobileFilterJS .left {
+    width: 30%;
+    max-width: 380px;
+    min-width: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 35px 35px 35px 30px;
+    background-color: white;
+    border-radius: 15px;
+    margin: 0 auto;
+  }
+  .mobileFilterJS .left .search {
+    width: 100%;
+    height: 60px;
+  }
+  .mobileFilterJS .left .boldBlack {
+    color: #171D25;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  .mobileFilterJS .left .price {
+    margin-top: 35px;
+  }
+  .mobileFilterJS .left .priceRange {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    margin-top: 15px;
+    width: 100%;
+  }
+  .mobileFilterJS .left .priceRange input {
+    width: 45%;
+    height: 44px;
+    border: 2px solid #E5E5ED;
+    box-sizing: border-box;
+    padding-right: 15px;
+  }
+  .mobileFilterJS .left .priceRange input::-moz-placeholder {
+    text-align: right;
+  }
+  .mobileFilterJS .left .priceRange input:-ms-input-placeholder {
+    text-align: right;
+  }
+  .mobileFilterJS .left .priceRange input::placeholder {
+    text-align: right;
+  }
+  .mobileFilterJS .left .priceRangeInp {
+    position: relative;
+    margin-top: 20px;
+    height: 25px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .mobileFilterJS .left .priceRangeInp .bar {
+    width: 315px;
+    height: 2px;
+    background: linear-gradient(to right, #696974, #99CC66 0%);
+  }
+  .mobileFilterJS .left .priceRangeInp .min,
+.mobileFilterJS .left .priceRangeInp .max {
+    width: 25px;
+    height: 25px;
+    color: #99CC66;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    cursor: pointer;
+    background: white;
+    background-image: url("../Images/pause.png");
+    background-size: cover;
+  }
+  .mobileFilterJS .left .priceRangeInp .min {
+    position: absolute;
+    left: 0px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .mobileFilterJS .left .priceRangeInp .max {
+    position: absolute;
+    right: -12.5px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .mobileFilterJS .left .domainZone {
+    margin-top: 45px;
+  }
+  .closeSort {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 20px 40px;
+    margin: 0 auto;
+    margin-bottom: 40px;
+    box-shadow: 0px 2px 5px 5px rgba(0, 0, 0, 0.0588235294);
+  }
+  .closeSort p {
+    color: #696974;
+    font-size: 14px;
+    font-family: "ALK Rounded Nusx Med", sans-serif;
+    font-weight: bold;
   }
 }
 @media (max-width: 350px) {

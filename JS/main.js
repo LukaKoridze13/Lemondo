@@ -12,7 +12,7 @@ domains.forEach((dom) => {
 })
 
 // Adding Categories to domains
-domains = domains.map((item,id) => {
+domains = domains.map((item, id) => {
     item.categories.map((category) => {
         categories.map((it) => {
             if (category === it.id) {
@@ -20,7 +20,7 @@ domains = domains.map((item,id) => {
             }
         })
     })
-    item.uniqueID=id
+    item.uniqueID = id
     return item
 })
 
@@ -75,62 +75,66 @@ sorters.forEach((option) => {
 
 
 // Creating Categories Chedckboxes
-let categoriesDiv = document.querySelector('.categoriesDiv')
-categories.forEach((category) => {
-    let box = document.createElement('div')
-    box.style.display = 'flex'
-    box.style.alignItems = 'center'
-    box.style.marginTop = '25px'
-    let checkbox = document.createElement('input')
-    checkbox.type = 'checkbox'
-    checkbox.name = category.name
-    checkbox.id = category.name
-    let label = document.createElement('label')
-    label.setAttribute('for', category.name)
-    label.innerText = category.name
-    box.appendChild(checkbox)
-    box.appendChild(label)
-    categoriesDiv.appendChild(box)
+let categoriesDiv = document.querySelectorAll('.categoriesDiv')
+categoriesDiv.forEach((boxer)=>{
+    categories.forEach((category) => {
+        let box = document.createElement('div')
+        box.style.display = 'flex'
+        box.style.alignItems = 'center'
+        box.style.marginTop = '25px'
+        let checkbox = document.createElement('input')
+        checkbox.type = 'checkbox'
+        checkbox.name = category.name
+        checkbox.id = category.name
+        let label = document.createElement('label')
+        label.setAttribute('for', category.name)
+        label.innerText = category.name
+        box.appendChild(checkbox)
+        box.appendChild(label)
+        boxer.appendChild(box)
 
-    checkbox.addEventListener('change', () => {
-        if (checkbox.checked) {
-            if (!filters.categories.includes(category.name)) {
-                filters.categories.push(category.name)
+        checkbox.addEventListener('change', () => {
+            if (checkbox.checked) {
+                if (!filters.categories.includes(category.name)) {
+                    filters.categories.push(category.name)
+                }
+            } else {
+                filters.categories.splice(filters.categories.indexOf(category.name), 1);
             }
-        } else {
-            filters.categories.splice(filters.categories.indexOf(category.name), 1);
-        }
-        filter();
+            filter();
+        })
     })
 })
 
 // Domain Zones Checkboxes
-let domainZone = document.querySelector('.domainZones')
-domainZones.forEach((zone) => {
-    let box = document.createElement('div')
-    box.style.display = 'flex'
-    box.style.alignItems = 'center'
-    box.style.marginTop = '25px'
-    let checkbox = document.createElement('input')
-    checkbox.type = 'checkbox'
-    checkbox.name = zone
-    checkbox.id = zone
-    let label = document.createElement('label')
-    label.setAttribute('for', zone)
-    label.innerText = zone
-    box.appendChild(checkbox)
-    box.appendChild(label)
-    domainZone.appendChild(box)
+let domainZone = document.querySelectorAll('.domainZones')
+domainZone.forEach((boxer)=>{
+    domainZones.forEach((zone) => {
+        let box = document.createElement('div')
+        box.style.display = 'flex'
+        box.style.alignItems = 'center'
+        box.style.marginTop = '25px'
+        let checkbox = document.createElement('input')
+        checkbox.type = 'checkbox'
+        checkbox.name = zone
+        checkbox.id = zone
+        let label = document.createElement('label')
+        label.setAttribute('for', zone)
+        label.innerText = zone
+        box.appendChild(checkbox)
+        box.appendChild(label)
+        boxer.appendChild(box)
 
-    checkbox.addEventListener('change', () => {
-        if (checkbox.checked) {
-            if (!filters.zone.includes(zone)) {
-                filters.zone.push(zone)
+        checkbox.addEventListener('change', () => {
+            if (checkbox.checked) {
+                if (!filters.zone.includes(zone)) {
+                    filters.zone.push(zone)
+                }
+            } else {
+                filters.zone.splice(filters.zone.indexOf(zone), 1);
             }
-        } else {
-            filters.zone.splice(filters.zone.indexOf(zone), 1);
-        }
-        filter();
+            filter();
+        })
     })
 })
 
@@ -659,8 +663,32 @@ maxSymbolInp.addEventListener('click', () => {
 });
 
 
-
-
+// Mobile Sorting
+let buttonSort = document.querySelector('.mobile_sort')
+let buttonFilter = document.querySelector('.mobile_filter')
+let mobileSort =  document.querySelector('.mobileSortJS');
+let mobileFilter = document.querySelector('.mobileFilterJS');
+let container  = document.querySelector('.container');
+let close_sort = document.querySelector('.close_sort');
+let close_filter = document.querySelector('.close_filter');
+mobileSort.remove();
+mobileFilter.remove();
+buttonSort.addEventListener('click',()=>{
+    container.remove();
+    document.body.appendChild(mobileSort)
+})
+buttonFilter.addEventListener('click', () => {
+    container.remove();
+    document.body.appendChild(mobileFilter)
+})
+close_sort.addEventListener('click', () => {
+    mobileSort.remove();
+    document.body.appendChild(container)
+})
+close_filter.addEventListener('click', () => {
+    mobileFilter.remove();
+    document.body.appendChild(container)
+})
 function filter() {
     visibleDomains = [];
     domains.forEach((test) => {
@@ -690,7 +718,7 @@ function filter() {
                 valid = false;
             }
         }
-        if (!name.includes(filters.name) && filters.name !== null ) {
+        if (!name.includes(filters.name) && filters.name !== null) {
             valid = false;
         }
         if (valid) {
@@ -747,44 +775,67 @@ function drawCards(data) {
         cartCopy.src = '../Images/cart_white.svg';
         add.appendChild(cartCopy)
         add.classList.add('adder')
-        add.style.display='flex'
-        add.style.alignItems ='center'
+        add.style.display = 'flex'
+        add.style.alignItems = 'center'
 
         let basket = document.createElement('div');
         basket.style.width = '125px'
         basket.style.height = '36px'
         basket.style.backgroundColor = '#F5F5F8'
-        basket.style.borderRadius='10px'
+        basket.style.borderRadius = '10px'
         let mark = document.createElement('img');
         mark.src = '../Images/mark.svg'
         let text = document.createElement('p');
         text.innerHTML = 'კალათაშია'
         text.style.fontSize = '14px';
         text.style.color = '#696974'
-        text.style.fontFamily =
+        text.style.fontFamily = "ALK Rounded Nusx Med";
+        text.style.fontWeight = 'bold'
+        text.style.marginLeft = '6px'
+        basket.appendChild(mark);
+        basket.appendChild(text);
+        basket.style.display = 'flex'
+        basket.style.justifyContent = 'center';
+        basket.style.alignItems = 'center'
 
-        add.addEventListener('click',()=>{
-            domains.forEach((pr)=>{
-                if(pr.uniqueID === product.uniqueID){
-                    pr.inCart=true;
+        add.addEventListener('click', () => {
+            domains.forEach((pr) => {
+                if (pr.uniqueID === product.uniqueID) {
+                    pr.inCart = true;
                 }
             })
+            card.removeEventListener('mouseenter', enter)
+            card.removeEventListener('mouseenter', leave)
+            right.remove();
+            contentbox.appendChild(basket)
+            contentbox.style.backgroundColor='white'
+            card.style.backgroundColor = 'white'
+            document.querySelector('.cartItems').innerText = Number(document.querySelector('.cartItems').innerText) + 1
+
         })
         // Hovering Cards
-        card.addEventListener('mouseenter', ()=>{
+        card.addEventListener('mouseenter', enter)
+        card.addEventListener('mouseleave', leave)
+        function enter() {
             card.style.backgroundColor = '#F5F5F8'
-            card.style.borderRadius ='10px'
-            img.src ='../Images/hover_drop.svg'          
+            card.style.borderRadius = '10px'
+            img.src = '../Images/hover_drop.svg'
             cart.remove()
             right.appendChild(add)
-        })
-        card.addEventListener('mouseleave', ()=>{
+        }
+        function leave() {
             card.style.backgroundColor = 'white'
             card.style.borderRadius = '0px'
             img.src = '../Images/btn_dropdown.svg'
             add.remove()
             right.appendChild(cart)
-        })
+        }
+        if (product.inCart) {
+            card.removeEventListener('mouseenter', enter)
+            card.removeEventListener('mouseenter', leave)
+            right.remove();
+            contentbox.appendChild(basket)
+        }
     })
     data.forEach((product, index) => {
         let card = document.createElement('div');
@@ -801,12 +852,13 @@ function drawCards(data) {
         let div = document.createElement('div');
         let cart = document.createElement('img');
         cart.src = '../Images/cart_white.svg';
-
+        let contentbox = document.createElement('div');
 
         // Appends
         parentMobile.appendChild(card)
-        card.appendChild(left);
-        card.appendChild(right);
+        card.appendChild(contentbox)
+        contentbox.appendChild(left);
+        contentbox.appendChild(right);
         left.appendChild(img);
         left.appendChild(name);
         right.appendChild(div);
@@ -816,10 +868,80 @@ function drawCards(data) {
 
         // CLassing
         card.classList.add('cardModel');
+        contentbox.classList.add('contentbox');
         left.classList.add('leftCard');
         right.classList.add('rightCard');
         priceGel.classList.add('gel');
         priceUsd.classList.add('usd');
 
+        let add = document.createElement('div')
+        let p = document.createElement('p')
+        p.innerText = 'დამატება'
+        add.appendChild(p)
+        let cartCopy = document.createElement('img');
+        cartCopy.src = '../Images/cart_white.svg';
+        add.appendChild(cartCopy)
+        add.classList.add('adder')
+        add.style.display = 'flex'
+        add.style.alignItems = 'center'
+
+        let basket = document.createElement('div');
+        basket.style.width = '125px'
+        basket.style.height = '36px'
+        basket.style.backgroundColor = '#F5F5F8'
+        basket.style.borderRadius = '10px'
+        let mark = document.createElement('img');
+        mark.src = '../Images/mark.svg'
+        let text = document.createElement('p');
+        text.innerHTML = 'კალათაშია'
+        text.style.fontSize = '14px';
+        text.style.color = '#696974'
+        text.style.fontFamily = "ALK Rounded Nusx Med";
+        text.style.fontWeight = 'bold'
+        text.style.marginLeft = '6px'
+        basket.appendChild(mark);
+        basket.appendChild(text);
+        basket.style.display = 'flex'
+        basket.style.justifyContent = 'center';
+        basket.style.alignItems = 'center'
+
+        add.addEventListener('click', () => {
+            domains.forEach((pr) => {
+                if (pr.uniqueID === product.uniqueID) {
+                    pr.inCart = true;
+                }
+            })
+            card.removeEventListener('mouseenter', enter)
+            card.removeEventListener('mouseenter', leave)
+            right.remove();
+            contentbox.appendChild(basket)
+            contentbox.style.backgroundColor = 'white'
+            card.style.backgroundColor = 'white'
+            document.querySelector('.cartItems').innerText = Number(document.querySelector('.cartItems').innerText) + 1
+
+        })
+        // Hovering Cards
+        card.addEventListener('mouseenter', enter)
+        card.addEventListener('mouseleave', leave)
+        function enter() {
+            card.style.backgroundColor = '#F5F5F8'
+            card.style.borderRadius = '10px'
+            img.src = '../Images/hover_drop.svg'
+            cart.remove()
+            right.appendChild(add)
+        }
+        function leave() {
+            card.style.backgroundColor = 'white'
+            card.style.borderRadius = '0px'
+            img.src = '../Images/btn_dropdown.svg'
+            add.remove()
+            right.appendChild(cart)
+        }
+        if (product.inCart) {
+            card.removeEventListener('mouseenter', enter)
+            card.removeEventListener('mouseenter', leave)
+            right.remove();
+            contentbox.appendChild(basket)
+        }
     })
 }
