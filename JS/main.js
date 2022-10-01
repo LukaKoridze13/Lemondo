@@ -76,7 +76,7 @@ sorters.forEach((option) => {
 
 // Creating Categories Chedckboxes
 let categoriesDiv = document.querySelectorAll('.categoriesDiv')
-categoriesDiv.forEach((boxer)=>{
+categoriesDiv.forEach((boxer) => {
     categories.forEach((category) => {
         let box = document.createElement('div')
         box.style.display = 'flex'
@@ -108,7 +108,7 @@ categoriesDiv.forEach((boxer)=>{
 
 // Domain Zones Checkboxes
 let domainZone = document.querySelectorAll('.domainZones')
-domainZone.forEach((boxer)=>{
+domainZone.forEach((boxer) => {
     domainZones.forEach((zone) => {
         let box = document.createElement('div')
         box.style.display = 'flex'
@@ -146,38 +146,46 @@ drawCards(domains);
 
 
 // Sortings
-let date = document.querySelector('.sorters .date') // Date 
-let deadline = document.querySelector('.sorters .deadline') // Valid untill
-let price = document.querySelector('.sorters .price') // Price
-let alphabet = document.querySelector('.sorters .alphabet') // Name
+let date = document.querySelectorAll('.sorters .date') // Date 
+let deadline = document.querySelectorAll('.sorters .deadline') // Valid untill
+let price = document.querySelectorAll('.sorters .price') // Price
+let alphabet = document.querySelectorAll('.sorters .alphabet') // Name
 let reversed = false; // If true, it's sorted by deadline, if false, it's sorted by date added
-deadline.addEventListener('click', () => {
-    if (!reversed) {
-        visibleDomains = visibleDomains.reverse();
-        drawCards(visibleDomains)
-        reversed = !reversed;
-    }
-})
-date.addEventListener('click', () => {
-    if (reversed) {
-        visibleDomains = visibleDomains.reverse();
-        drawCards(visibleDomains)
-        reversed = !reversed;
-    }
-})
-price.addEventListener('click', () => {
-    visibleDomains = visibleDomains.sort((a, b) => {
-        return a.price - b.price
+deadline.forEach((de) => {
+    de.addEventListener('click', () => {
+        if (!reversed) {
+            visibleDomains = visibleDomains.reverse();
+            drawCards(visibleDomains)
+            reversed = !reversed;
+        }
     })
-    drawCards(visibleDomains)
 })
-alphabet.addEventListener('click', () => {
-    visibleDomains = visibleDomains.sort(function (a, b) {
-        var textA = a.domainName.toUpperCase();
-        var textB = b.domainName.toUpperCase();
-        return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
-    });
-    drawCards(visibleDomains)
+date.forEach((de) => {
+    de.addEventListener('click', () => {
+        if (reversed) {
+            visibleDomains = visibleDomains.reverse();
+            drawCards(visibleDomains)
+            reversed = !reversed;
+        }
+    })
+})
+price.forEach((de) => {
+    de.addEventListener('click', () => {
+        visibleDomains = visibleDomains.sort((a, b) => {
+            return a.price - b.price
+        })
+        drawCards(visibleDomains)
+    })
+})
+alphabet.forEach((de) => {
+    de.addEventListener('click', () => {
+        visibleDomains = visibleDomains.sort(function (a, b) {
+            var textA = a.domainName.toUpperCase();
+            var textB = b.domainName.toUpperCase();
+            return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+        });
+        drawCards(visibleDomains)
+    })
 })
 
 // Inputs
@@ -666,14 +674,14 @@ maxSymbolInp.addEventListener('click', () => {
 // Mobile Sorting
 let buttonSort = document.querySelector('.mobile_sort')
 let buttonFilter = document.querySelector('.mobile_filter')
-let mobileSort =  document.querySelector('.mobileSortJS');
+let mobileSort = document.querySelector('.mobileSortJS');
 let mobileFilter = document.querySelector('.mobileFilterJS');
-let container  = document.querySelector('.container');
+let container = document.querySelector('.container');
 let close_sort = document.querySelector('.close_sort');
 let close_filter = document.querySelector('.close_filter');
 mobileSort.remove();
 mobileFilter.remove();
-buttonSort.addEventListener('click',()=>{
+buttonSort.addEventListener('click', () => {
     container.remove();
     document.body.appendChild(mobileSort)
 })
@@ -684,6 +692,7 @@ buttonFilter.addEventListener('click', () => {
 close_sort.addEventListener('click', () => {
     mobileSort.remove();
     document.body.appendChild(container)
+    console.log(filters)
 })
 close_filter.addEventListener('click', () => {
     mobileFilter.remove();
@@ -808,7 +817,7 @@ function drawCards(data) {
             card.removeEventListener('mouseenter', leave)
             right.remove();
             contentbox.appendChild(basket)
-            contentbox.style.backgroundColor='white'
+            contentbox.style.backgroundColor = 'white'
             card.style.backgroundColor = 'white'
             document.querySelector('.cartItems').innerText = Number(document.querySelector('.cartItems').innerText) + 1
 
@@ -886,33 +895,31 @@ function drawCards(data) {
         add.style.alignItems = 'center'
 
         let basket = document.createElement('div');
-        basket.style.width = '125px'
-        basket.style.height = '36px'
+        basket.style.width = '100px'
+        basket.style.height = '33px'
         basket.style.backgroundColor = '#F5F5F8'
         basket.style.borderRadius = '10px'
         let mark = document.createElement('img');
         mark.src = '../Images/mark.svg'
         let text = document.createElement('p');
         text.innerHTML = 'კალათაშია'
-        text.style.fontSize = '14px';
+        text.style.fontSize = '11px';
         text.style.color = '#696974'
         text.style.fontFamily = "ALK Rounded Nusx Med";
         text.style.fontWeight = 'bold'
-        text.style.marginLeft = '6px'
+        text.style.marginLeft = '4px'
         basket.appendChild(mark);
         basket.appendChild(text);
         basket.style.display = 'flex'
         basket.style.justifyContent = 'center';
         basket.style.alignItems = 'center'
 
-        add.addEventListener('click', () => {
+        cart.addEventListener('click', () => {
             domains.forEach((pr) => {
                 if (pr.uniqueID === product.uniqueID) {
                     pr.inCart = true;
                 }
             })
-            card.removeEventListener('mouseenter', enter)
-            card.removeEventListener('mouseenter', leave)
             right.remove();
             contentbox.appendChild(basket)
             contentbox.style.backgroundColor = 'white'
@@ -920,23 +927,6 @@ function drawCards(data) {
             document.querySelector('.cartItems').innerText = Number(document.querySelector('.cartItems').innerText) + 1
 
         })
-        // Hovering Cards
-        card.addEventListener('mouseenter', enter)
-        card.addEventListener('mouseleave', leave)
-        function enter() {
-            card.style.backgroundColor = '#F5F5F8'
-            card.style.borderRadius = '10px'
-            img.src = '../Images/hover_drop.svg'
-            cart.remove()
-            right.appendChild(add)
-        }
-        function leave() {
-            card.style.backgroundColor = 'white'
-            card.style.borderRadius = '0px'
-            img.src = '../Images/btn_dropdown.svg'
-            add.remove()
-            right.appendChild(cart)
-        }
         if (product.inCart) {
             card.removeEventListener('mouseenter', enter)
             card.removeEventListener('mouseenter', leave)

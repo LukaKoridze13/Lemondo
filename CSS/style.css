@@ -602,10 +602,11 @@ input[type=checkbox] {
   .cardModel {
     width: 90% !important;
     background-color: white !important;
-    margin: 20px auto;
+    margin: 0px auto;
   }
   .right {
     background-color: white !important;
+    margin: 20px auto;
   }
   .mobileSortJS .sort {
     display: flex;
@@ -767,4 +768,34 @@ main .products .content_desktop .middle .left .boldBlack {
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+}
+
+@media (max-width: 340px) {
+  .header_mobile {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+@media (max-width: 420px) {
+  .rightCard img {
+    padding: 7px !important;
+  }
+  .rightCard div .gel {
+    font-size: 12px !important;
+  }
+  .rightCard div .usd {
+    font-size: 10px !important;
+  }
+  .leftCard {
+    gap: 5px !important;
+  }
+  .leftCard img {
+    width: 25px !important;
+  }
+  .leftCard p {
+    font-size: 12px !important;
+  }
+  .sorters {
+    flex-direction: column;
+  }
 }/*# sourceMappingURL=style.css.map */

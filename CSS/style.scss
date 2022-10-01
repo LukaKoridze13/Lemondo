@@ -642,14 +642,13 @@ input[type=checkbox] {
     .cardModel {
         width: 90% !important;
         background-color: white !important;
-        margin: 20px auto;
+        margin: 0px auto;
     }
 
     .right {
         background-color: white !important;
+        margin: 20px auto;
     }
-
-
     .mobileSortJS {
         .sort {
             @include between();
@@ -814,4 +813,40 @@ input[type=checkbox] {
 
 main .products .content_desktop .middle .left .boldBlack {
     user-select: none;
+}
+
+
+// Fixes
+@media (max-width: 340px) {
+    .header_mobile{
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+@media (max-width: 420px) {
+    .rightCard{
+        img{
+            padding: 7px !important;
+        }
+        div{
+            .gel{
+                font-size: 12px !important;
+            }
+            .usd{
+                font-size: 10px !important;
+            }
+        }
+    }
+    .leftCard{
+        gap: 5px !important;
+        img{
+            width: 25px !important;
+        }
+        p{
+            font-size: 12px !important;
+        }
+    }
+    .sorters{
+        flex-direction: column;
+    }
 }
