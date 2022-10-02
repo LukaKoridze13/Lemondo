@@ -59,7 +59,7 @@ domainCount.innerText = domains.length
 let sorters = document.querySelectorAll('.sorters p')
 let sortImage = document.createElement('img') // Active Sorting Image
 sortImage.style.marginLeft = '5px'
-sortImage.src = '../Images/sort.svg'
+sortImage.src = './Images/sort.svg'
 sorters.forEach((option) => {
     option.addEventListener('click', (e) => {
         sorters.forEach((item) => {
@@ -1234,7 +1234,7 @@ function drawCards(data) {
         let left = document.createElement('div');
         let right = document.createElement('div');
         let img = document.createElement('img');
-        img.src = '../Images/btn_dropdown.svg'
+        img.src = './Images/btn_dropdown.svg'
         let name = document.createElement('p');
         name.innerText = product.domainName + product.domainExtension;
         let priceGel = document.createElement('p');
@@ -1243,7 +1243,7 @@ function drawCards(data) {
         priceUsd.innerText = Math.round(product.price / 2.85 * 10) / 10 + " $";
         let div = document.createElement('div');
         let cart = document.createElement('img');
-        cart.src = '../Images/cart_white.svg';
+        cart.src = './Images/cart_white.svg';
         let contentbox = document.createElement('div');
 
         // Appends
@@ -1271,7 +1271,7 @@ function drawCards(data) {
         p.innerText = 'დამატება'
         add.appendChild(p)
         let cartCopy = document.createElement('img');
-        cartCopy.src = '../Images/cart_white.svg';
+        cartCopy.src = './Images/cart_white.svg';
         add.appendChild(cartCopy)
         add.classList.add('adder')
         add.style.display = 'flex'
@@ -1283,7 +1283,7 @@ function drawCards(data) {
         basket.style.backgroundColor = '#F5F5F8'
         basket.style.borderRadius = '10px'
         let mark = document.createElement('img');
-        mark.src = '../Images/mark.svg'
+        mark.src = './Images/mark.svg'
         let text = document.createElement('p');
         text.innerHTML = 'კალათაშია'
         text.style.fontSize = '14px';
@@ -1318,14 +1318,14 @@ function drawCards(data) {
         function enter() {
             card.style.backgroundColor = '#F5F5F8'
             card.style.borderRadius = '10px'
-            img.src = '../Images/hover_drop.svg'
+            img.src = './Images/hover_drop.svg'
             cart.remove()
             right.appendChild(add)
         }
         function leave() {
             card.style.backgroundColor = 'white'
             card.style.borderRadius = '0px'
-            img.src = '../Images/btn_dropdown.svg'
+            img.src = './Images/btn_dropdown.svg'
             add.remove()
             right.appendChild(cart)
         }
@@ -1341,7 +1341,7 @@ function drawCards(data) {
         let left = document.createElement('div');
         let right = document.createElement('div');
         let img = document.createElement('img');
-        img.src = '../Images/btn_dropdown.svg'
+        img.src = './Images/btn_dropdown.svg'
         let name = document.createElement('p');
         name.innerText = product.domainName + product.domainExtension;
         let priceGel = document.createElement('p');
@@ -1350,7 +1350,7 @@ function drawCards(data) {
         priceUsd.innerText = Math.round(product.price / 2.85 * 10) / 10 + " $";
         let div = document.createElement('div');
         let cart = document.createElement('img');
-        cart.src = '../Images/cart_white.svg';
+        cart.src = './Images/cart_white.svg';
         let contentbox = document.createElement('div');
 
         // Appends
@@ -1378,7 +1378,7 @@ function drawCards(data) {
         p.innerText = 'დამატება'
         add.appendChild(p)
         let cartCopy = document.createElement('img');
-        cartCopy.src = '../Images/cart_white.svg';
+        cartCopy.src = './Images/cart_white.svg';
         add.appendChild(cartCopy)
         add.classList.add('adder')
         add.style.display = 'flex'
@@ -1390,7 +1390,7 @@ function drawCards(data) {
         basket.style.backgroundColor = '#F5F5F8'
         basket.style.borderRadius = '10px'
         let mark = document.createElement('img');
-        mark.src = '../Images/mark.svg'
+        mark.src = './Images/mark.svg'
         let text = document.createElement('p');
         text.innerHTML = 'კალათაშია'
         text.style.fontSize = '11px';
