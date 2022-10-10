@@ -188,7 +188,7 @@ alphabet.forEach((de) => {
     })
 })
 
-if(window.innerWidth <= 480 ){
+if (window.innerWidth <= 480) {
     // Inputs
     let minPriceInp = document.querySelectorAll('#minPrice')[1] // Min Price Input
     let maxPriceInp = document.querySelectorAll('#maxPrice')[1] // Max Price Input
@@ -475,6 +475,34 @@ if(window.innerWidth <= 480 ){
     minPrice.addEventListener('mousedown', () => {
         document.addEventListener('mousemove', moveMinPrice)
     })
+    minPrice.addEventListener('touchmove', (event) => {
+        let left = event.changedTouches[0].clientX - x - 12.5
+        if (left < 0) {
+            left = 0
+        }
+        if (left > width - 12.5) {
+            left = width - 12.5
+        }
+        if (maxPrice.style.left === '') {
+            let limit = width - 37.5
+            if (left >= limit) {
+                left = limit
+            }
+        } else {
+            let limit = parseInt(maxPrice.style.left) - 25
+            if (left >= limit) {
+                left = limit
+            }
+        }
+
+        minPrice.style.left = left + 'px';
+        // Changing min price value
+        minPriceInp.value = Math.round((left + 12.5) / width * highestPrice)
+        if (left === 0) {
+            minPriceInp.value = 0;
+        }
+        minPriceInp.click();
+    })
     function moveMinPrice(event) {
         let left = event.clientX - x - 12.5
         if (left < 0) {
@@ -531,6 +559,29 @@ if(window.innerWidth <= 480 ){
     maxPrice.addEventListener('mousedown', () => {
         document.addEventListener('mousemove', moveMaxPrice)
     })
+    maxPrice.addEventListener('touchmove', (event) => {
+        let left = event.changedTouches[0].clientX - x - 12.5
+        if (left < 0) {
+            left = 0
+        }
+        if (left > width - 12.5) {
+            left = width - 12.5
+        }
+        let limit = parseInt(minPrice.style.left) + 25
+        if (left <= limit) {
+            left = limit
+        }
+        maxPrice.style.left = left + 'px';
+        // Changing max price value
+        maxPriceInp.value = Math.round((left + 12.5) / width * highestPrice)
+        if (left === width) {
+            maxPriceInp.value = highestPrice;
+        }
+        if (left === 0) {
+            maxPriceInp.value = 0;
+        }
+        maxPriceInp.click();
+    })
     function moveMaxPrice(event) {
         let left = event.clientX - x - 12.5
         if (left < 0) {
@@ -575,6 +626,34 @@ if(window.innerWidth <= 480 ){
 
     minSymbol.addEventListener('mousedown', () => {
         document.addEventListener('mousemove', moveMinSymbol)
+    })
+    minSymbol.addEventListener('touchmove', (event) => {
+        let left = event.changedTouches[0].clientX - x - 12.5
+        if (left < 0) {
+            left = 0
+        }
+        if (left > width - 12.5) {
+            left = width - 12.5
+        }
+        if (maxSymbol.style.left === '') {
+            let limit = width - 37.5
+            if (left >= limit) {
+                left = limit
+            }
+        } else {
+            let limit = parseInt(maxSymbol.style.left) - 25
+            if (left >= limit) {
+                left = limit
+            }
+        }
+
+        minSymbol.style.left = left + 'px';
+        // Changing min Symbol value
+        minSymbolInp.value = Math.round((left + 12.5) / width * highestSymbol)
+        if (left === 0) {
+            minSymbolInp.value = 0;
+        }
+        minSymbolInp.click();
     })
     function moveMinSymbol(event) {
         let left = event.clientX - x - 12.5
@@ -632,6 +711,29 @@ if(window.innerWidth <= 480 ){
     maxSymbol.addEventListener('mousedown', () => {
         document.addEventListener('mousemove', moveMaxSymbol)
     })
+    maxSymbol.addEventListener('touchmove', (event) => {
+        let left = event.changedTouches[0].clientX - x - 12.5
+        if (left < 0) {
+            left = 0
+        }
+        if (left > width - 12.5) {
+            left = width - 12.5
+        }
+        let limit = parseInt(minSymbol.style.left) + 25
+        if (left <= limit) {
+            left = limit
+        }
+        maxSymbol.style.left = left + 'px';
+        // Changing max Symbol value
+        maxSymbolInp.value = Math.round((left + 12.5) / width * highestSymbol)
+        if (left === width) {
+            maxSymbolInp.value = highestSymbol;
+        }
+        if (left === 0) {
+            maxSymbolInp.value = 0;
+        }
+        maxSymbolInp.click();
+    })
     function moveMaxSymbol(event) {
         let left = event.clientX - x - 12.5
         if (left < 0) {
@@ -673,491 +775,593 @@ if(window.innerWidth <= 480 ){
         // filter
         filter();
     });
-}else{
+} else {
     // Inputs
-let minPriceInp = document.querySelector('#minPrice') // Min Price Input
-let maxPriceInp = document.querySelector('#maxPrice') // Max Price Input
-let minSymbolInp = document.querySelector('#minSymbol') // Min Symbol Input
-let maxSymbolInp = document.querySelector('#maxSymbol') // ax Symbol Input
-let minPrice = document.querySelector('.minPrice') // minPrice Dragger
-let maxPrice = document.querySelector('.maxPrice') // MaxPrice Dragger
-let minSymbol = document.querySelector('.minSymbol') //  minSymbol Dragger
-let maxSymbol = document.querySelector('.maxSymbol') // MaxSymbol Dragger
-let barPrice = document.querySelector('.barPrice') // price range bar
-let barSymbol = document.querySelector('.barSymbol') // symbol range bar
-let width = barPrice.getBoundingClientRect().width // bar width
-let x = barPrice.getBoundingClientRect().x  // bar X position
+    let minPriceInp = document.querySelector('#minPrice') // Min Price Input
+    let maxPriceInp = document.querySelector('#maxPrice') // Max Price Input
+    let minSymbolInp = document.querySelector('#minSymbol') // Min Symbol Input
+    let maxSymbolInp = document.querySelector('#maxSymbol') // ax Symbol Input
+    let minPrice = document.querySelector('.minPrice') // minPrice Dragger
+    let maxPrice = document.querySelector('.maxPrice') // MaxPrice Dragger
+    let minSymbol = document.querySelector('.minSymbol') //  minSymbol Dragger
+    let maxSymbol = document.querySelector('.maxSymbol') // MaxSymbol Dragger
+    let barPrice = document.querySelector('.barPrice') // price range bar
+    let barSymbol = document.querySelector('.barSymbol') // symbol range bar
+    let width = barPrice.getBoundingClientRect().width // bar width
+    let x = barPrice.getBoundingClientRect().x  // bar X position
 
-minPriceInp.addEventListener('keyup', () => {
+    minPriceInp.addEventListener('keyup', () => {
 
-    // If max or price is not inputed, set to highest
-    if (maxPriceInp.value === '') {
-        maxPriceInp.value = highestPrice
-    }
-
-
-    if (Number(minPriceInp.value) < 0) {
-        minPriceInp.value = 0
-    }
-
-    // calculated left px and sets
-    let calc = Math.round(Number(minPriceInp.value) / highestPrice * width) - 12.5
-    if (calc < 0) {
-        calc = 0
-    }
-    if (calc > width - 12.5) {
-        calc = width - 12.5
-    }
-    console.log(calc)
-
-    minPrice.style.left = `${calc}px`
-
-    // calculating green color starting and ending for range bar
-    let startGreen = Math.round((Number(minPriceInp.value) / highestPrice * 100) * 10) / 10
-    let endGreen = Math.round((Number(maxPriceInp.value) / highestPrice * 100) * 10) / 10
-    barPrice.style.background = `linear-gradient(to right, #696974, #696974 ${startGreen - 1}%,#99CC66 ${startGreen}%,#99CC66 ${endGreen - 3}%, #696974 ${endGreen - 4}%)`
-
-    // Adding minimum Price in filters
-    filters.priceMin = Number(minPriceInp.value)
-
-    // filter
-    filter();
-
-});
-maxPriceInp.addEventListener('keyup', () => {
-    // If min price is not inputed, set to highest
-    if (minPriceInp.value === '') {
-        minPriceInp.value = 0
-    }
-
-    // Checks if input value is valid
-    if (Number(maxPriceInp.value) > highestPrice) {
-        maxPriceInp.value = highestPrice
-    }
-
-    // calculated left px and sets
-    let calc = Math.round(Number(maxPriceInp.value) / highestPrice * width) - 12.5
-    if (calc < 0) {
-        calc = 0
-    }
-    if (calc > width - 12.5) {
-        calc = width - 12.5
-    }
-    maxPrice.style.left = `${calc}px`
-
-    // calculating green color starting and ending for range bar
-    let startGreen = Math.round((Number(minPriceInp.value) / highestPrice * 100) * 10) / 10
-    let endGreen = Math.round((Number(maxPriceInp.value) / highestPrice * 100) * 10) / 10
-    barPrice.style.background = `linear-gradient(to right, #696974, #696974 ${startGreen - 1}%,#99CC66 ${startGreen}%,#99CC66 ${endGreen - 3}%, #696974 ${endGreen - 4}%)`
-
-    // Adding minimum Price in filters
-    filters.priceMax = Number(maxPriceInp.value)
-
-    // filter
-    filter();
-});
-minSymbolInp.addEventListener('keyup', () => {
-
-    // If max or Symbol is not inputed, set to highest
-    if (maxSymbolInp.value === '') {
-        maxSymbolInp.value = highestSymbol
-    }
-
-
-    if (Number(minSymbolInp.value) < 0) {
-        minSymbolInp.value = 0
-    }
-
-    // calculated left px and sets
-    let calc = Math.round(Number(minSymbolInp.value) / highestSymbol * width) - 12.5
-    if (calc < 0) {
-        calc = 0
-    }
-    if (calc > width - 12.5) {
-        calc = width - 12.5
-    }
-    minSymbol.style.left = `${calc}px`
-
-    // calculating green color starting and ending for range bar
-    let startGreen = Math.round((Number(minSymbolInp.value) / highestSymbol * 100) * 10) / 10
-    let endGreen = Math.round((Number(maxSymbolInp.value) / highestSymbol * 100) * 10) / 10
-    barSymbol.style.background = `linear-gradient(to right, #696974, #696974 ${startGreen - 1}%,#99CC66 ${startGreen}%,#99CC66 ${endGreen - 3}%, #696974 ${endGreen - 4}%)`
-
-    // Adding minimum Symbol in filters
-    filters.symbolMin = Number(minSymbolInp.value)
-
-    // filter
-    filter();
-
-});
-maxSymbolInp.addEventListener('keyup', () => {
-    // If min Symbol is not inputed, set to highest
-    if (minSymbolInp.value === '') {
-        minSymbolInp.value = 0
-    }
-
-    // Checks if input value is valid
-    if (Number(maxSymbolInp.value) > highestSymbol) {
-        maxSymbolInp.value = highestSymbol
-    }
-
-    // calculated left px and sets
-    let calc = Math.round(Number(maxSymbolInp.value) / highestSymbol * width) - 12.5
-    if (calc < 0) {
-        calc = 0
-    }
-    if (calc > width - 12.5) {
-        calc = width - 12.5
-    }
-    maxSymbol.style.left = `${calc}px`
-    // calculating green color starting and ending for range bar
-    let startGreen = Math.round((Number(minSymbolInp.value) / highestSymbol * 100) * 10) / 10
-    let endGreen = Math.round((Number(maxSymbolInp.value) / highestSymbol * 100) * 10) / 10
-    barSymbol.style.background = `linear-gradient(to right, #696974, #696974 ${startGreen - 1}%,#99CC66 ${startGreen}%,#99CC66 ${endGreen - 3}%, #696974 ${endGreen - 4}%)`
-
-    // Adding minimum Symbol in filters
-    filters.symbolMax = Number(maxSymbolInp.value)
-
-    // filter
-    filter();
-});
-// If user left input without instering valid value
-minSymbolInp.addEventListener('blur', () => {
-    if (minSymbolInp.value === '') {
-        minSymbolInp.value = 0
-        filters.symbolMin = 0;
-    }
-    // Checks if input value is valid
-    if (Number(minSymbolInp.value) > Number(maxSymbolInp.value)) {
-        minSymbolInp.value = Number(maxSymbolInp.value)
-    }
-    filter();
-    // calculated left px and sets
-    let calc = Math.round(Number(minSymbolInp.value) / highestSymbol * width) - 12.5
-    if (calc < 0) {
-        calc = 0
-    }
-    if (calc > width - 12.5) {
-        calc = width - 12.5
-    }
-    minSymbol.style.left = `${calc}px`
-    // calculating green color starting and ending for range bar
-    let startGreen = Math.round((Number(minSymbolInp.value) / highestSymbol * 100) * 10) / 10
-    let endGreen = Math.round((Number(maxSymbolInp.value) / highestSymbol * 100) * 10) / 10
-    barSymbol.style.background = `linear-gradient(to right, #696974, #696974 ${startGreen - 1}%,#99CC66 ${startGreen}%,#99CC66 ${endGreen - 3}%, #696974 ${endGreen - 4}%)`
-})
-maxSymbolInp.addEventListener('blur', () => {
-    if (maxSymbolInp.value === '') {
-        minSymbolInp.value = highestSymbol
-        filters.symbolMax = highestSymbol;
-    }
-    if (Number(minSymbolInp.value) > Number(maxSymbolInp.value)) {
-        maxSymbolInp.value = Number(minSymbolInp.value)
-    }
-    filter();
-    // calculated left px and sets
-    let calc = Math.round(Number(maxSymbolInp.value) / highestSymbol * width) - 12.5
-    if (calc < 0) {
-        calc = 0
-    }
-    if (calc > width - 12.5) {
-        calc = width - 12.5
-    }
-    maxSymbol.style.left = `${calc}px`
-
-    // calculating green color starting and ending for range bar
-    let startGreen = Math.round((Number(minSymbolInp.value) / highestSymbol * 100) * 10) / 10
-    let endGreen = Math.round((Number(maxSymbolInp.value) / highestSymbol * 100) * 10) / 10
-    barSymbol.style.background = `linear-gradient(to right, #696974, #696974 ${startGreen - 1}%,#99CC66 ${startGreen}%,#99CC66 ${endGreen}%, #696974 ${endGreen}%)`
-
-})
-minPriceInp.addEventListener('blur', () => {
-    if (minPriceInp.value === '') {
-        minPriceInp.value = 0
-        filters.priceMin = 0;
-    }
-    // Checks if input value is valid
-    if (Number(minPriceInp.value) > Number(maxPriceInp.value)) {
-        minPriceInp.value = Number(maxPriceInp.value)
-        filters.priceMin = Number(maxPriceInp.value)
-    }
-    filter();
-    // calculated left px and sets
-    let calc = Math.round(Number(minPriceInp.value) / highestPrice * width) - 12.5
-    if (calc < 0) {
-        calc = 0
-    }
-    if (calc > width - 12.5) {
-        calc = width - 12.5
-    }
-    console.log(calc)
-    minPrice.style.left = `${calc}px`
-    // calculating green color starting and ending for range bar
-    let startGreen = Math.round((Number(minPriceInp.value) / highestPrice * 100) * 10) / 10
-    let endGreen = Math.round((Number(maxPriceInp.value) / highestPrice * 100) * 10) / 10
-    barPrice.style.background = `linear-gradient(to right, #696974, #696974 ${startGreen - 1}%,#99CC66 ${startGreen}%,#99CC66 ${endGreen - 3}%, #696974 ${endGreen - 4}%)`
-})
-maxPriceInp.addEventListener('blur', () => {
-    if (maxPriceInp.value === '') {
-        minPriceInp.value = highestPrice
-        filters.priceMax = highestPrice;
-    }
-    if (Number(minPriceInp.value) > Number(maxPriceInp.value)) {
-        maxPriceInp.value = Number(minPriceInp.value)
-    }
-    filter();
-    // calculated left px and sets
-    let calc = Math.round(Number(maxPriceInp.value) / highestPrice * width) - 12.5
-    if (calc < 0) {
-        calc = 0
-    }
-    if (calc > width - 12.5) {
-        calc = width - 12.5
-    }
-    maxPrice.style.left = `${calc}px`
-
-    // calculating green color starting and ending for range bar
-    let startGreen = Math.round((Number(minPriceInp.value) / highestPrice * 100) * 10) / 10
-    let endGreen = Math.round((Number(maxPriceInp.value) / highestPrice * 100) * 10) / 10
-    barPrice.style.background = `linear-gradient(to right, #696974, #696974 ${startGreen - 1}%,#99CC66 ${startGreen}%,#99CC66 ${endGreen - 3}%, #696974 ${endGreen - 4}%)`
-
-})
-
-// Search
-
-let search = document.querySelectorAll('.search');
-search.forEach((pe) => {
-    pe.addEventListener('keyup', (e) => {
-        filters.name = e.target.value
-        if (e.target.value === '') {
-            filters.name = null;
+        // If max or price is not inputed, set to highest
+        if (maxPriceInp.value === '') {
+            maxPriceInp.value = highestPrice
         }
-        filter()
+
+
+        if (Number(minPriceInp.value) < 0) {
+            minPriceInp.value = 0
+        }
+
+        // calculated left px and sets
+        let calc = Math.round(Number(minPriceInp.value) / highestPrice * width) - 12.5
+        if (calc < 0) {
+            calc = 0
+        }
+        if (calc > width - 12.5) {
+            calc = width - 12.5
+        }
+        console.log(calc)
+
+        minPrice.style.left = `${calc}px`
+
+        // calculating green color starting and ending for range bar
+        let startGreen = Math.round((Number(minPriceInp.value) / highestPrice * 100) * 10) / 10
+        let endGreen = Math.round((Number(maxPriceInp.value) / highestPrice * 100) * 10) / 10
+        barPrice.style.background = `linear-gradient(to right, #696974, #696974 ${startGreen - 1}%,#99CC66 ${startGreen}%,#99CC66 ${endGreen - 3}%, #696974 ${endGreen - 4}%)`
+
+        // Adding minimum Price in filters
+        filters.priceMin = Number(minPriceInp.value)
+
+        // filter
+        filter();
+
+    });
+    maxPriceInp.addEventListener('keyup', () => {
+        // If min price is not inputed, set to highest
+        if (minPriceInp.value === '') {
+            minPriceInp.value = 0
+        }
+
+        // Checks if input value is valid
+        if (Number(maxPriceInp.value) > highestPrice) {
+            maxPriceInp.value = highestPrice
+        }
+
+        // calculated left px and sets
+        let calc = Math.round(Number(maxPriceInp.value) / highestPrice * width) - 12.5
+        if (calc < 0) {
+            calc = 0
+        }
+        if (calc > width - 12.5) {
+            calc = width - 12.5
+        }
+        maxPrice.style.left = `${calc}px`
+
+        // calculating green color starting and ending for range bar
+        let startGreen = Math.round((Number(minPriceInp.value) / highestPrice * 100) * 10) / 10
+        let endGreen = Math.round((Number(maxPriceInp.value) / highestPrice * 100) * 10) / 10
+        barPrice.style.background = `linear-gradient(to right, #696974, #696974 ${startGreen - 1}%,#99CC66 ${startGreen}%,#99CC66 ${endGreen - 3}%, #696974 ${endGreen - 4}%)`
+
+        // Adding minimum Price in filters
+        filters.priceMax = Number(maxPriceInp.value)
+
+        // filter
+        filter();
+    });
+    minSymbolInp.addEventListener('keyup', () => {
+
+        // If max or Symbol is not inputed, set to highest
+        if (maxSymbolInp.value === '') {
+            maxSymbolInp.value = highestSymbol
+        }
+
+
+        if (Number(minSymbolInp.value) < 0) {
+            minSymbolInp.value = 0
+        }
+
+        // calculated left px and sets
+        let calc = Math.round(Number(minSymbolInp.value) / highestSymbol * width) - 12.5
+        if (calc < 0) {
+            calc = 0
+        }
+        if (calc > width - 12.5) {
+            calc = width - 12.5
+        }
+        minSymbol.style.left = `${calc}px`
+
+        // calculating green color starting and ending for range bar
+        let startGreen = Math.round((Number(minSymbolInp.value) / highestSymbol * 100) * 10) / 10
+        let endGreen = Math.round((Number(maxSymbolInp.value) / highestSymbol * 100) * 10) / 10
+        barSymbol.style.background = `linear-gradient(to right, #696974, #696974 ${startGreen - 1}%,#99CC66 ${startGreen}%,#99CC66 ${endGreen - 3}%, #696974 ${endGreen - 4}%)`
+
+        // Adding minimum Symbol in filters
+        filters.symbolMin = Number(minSymbolInp.value)
+
+        // filter
+        filter();
+
+    });
+    maxSymbolInp.addEventListener('keyup', () => {
+        // If min Symbol is not inputed, set to highest
+        if (minSymbolInp.value === '') {
+            minSymbolInp.value = 0
+        }
+
+        // Checks if input value is valid
+        if (Number(maxSymbolInp.value) > highestSymbol) {
+            maxSymbolInp.value = highestSymbol
+        }
+
+        // calculated left px and sets
+        let calc = Math.round(Number(maxSymbolInp.value) / highestSymbol * width) - 12.5
+        if (calc < 0) {
+            calc = 0
+        }
+        if (calc > width - 12.5) {
+            calc = width - 12.5
+        }
+        maxSymbol.style.left = `${calc}px`
+        // calculating green color starting and ending for range bar
+        let startGreen = Math.round((Number(minSymbolInp.value) / highestSymbol * 100) * 10) / 10
+        let endGreen = Math.round((Number(maxSymbolInp.value) / highestSymbol * 100) * 10) / 10
+        barSymbol.style.background = `linear-gradient(to right, #696974, #696974 ${startGreen - 1}%,#99CC66 ${startGreen}%,#99CC66 ${endGreen - 3}%, #696974 ${endGreen - 4}%)`
+
+        // Adding minimum Symbol in filters
+        filters.symbolMax = Number(maxSymbolInp.value)
+
+        // filter
+        filter();
+    });
+    // If user left input without instering valid value
+    minSymbolInp.addEventListener('blur', () => {
+        if (minSymbolInp.value === '') {
+            minSymbolInp.value = 0
+            filters.symbolMin = 0;
+        }
+        // Checks if input value is valid
+        if (Number(minSymbolInp.value) > Number(maxSymbolInp.value)) {
+            minSymbolInp.value = Number(maxSymbolInp.value)
+        }
+        filter();
+        // calculated left px and sets
+        let calc = Math.round(Number(minSymbolInp.value) / highestSymbol * width) - 12.5
+        if (calc < 0) {
+            calc = 0
+        }
+        if (calc > width - 12.5) {
+            calc = width - 12.5
+        }
+        minSymbol.style.left = `${calc}px`
+        // calculating green color starting and ending for range bar
+        let startGreen = Math.round((Number(minSymbolInp.value) / highestSymbol * 100) * 10) / 10
+        let endGreen = Math.round((Number(maxSymbolInp.value) / highestSymbol * 100) * 10) / 10
+        barSymbol.style.background = `linear-gradient(to right, #696974, #696974 ${startGreen - 1}%,#99CC66 ${startGreen}%,#99CC66 ${endGreen - 3}%, #696974 ${endGreen - 4}%)`
     })
-})
-search.forEach((pe) => {
-    pe.addEventListener('blur', (e) => {
-        filters.name = e.target.value
-        if (e.target.value === '') {
-            filters.name = null;
+    maxSymbolInp.addEventListener('blur', () => {
+        if (maxSymbolInp.value === '') {
+            minSymbolInp.value = highestSymbol
+            filters.symbolMax = highestSymbol;
         }
-        filter()
+        if (Number(minSymbolInp.value) > Number(maxSymbolInp.value)) {
+            maxSymbolInp.value = Number(minSymbolInp.value)
+        }
+        filter();
+        // calculated left px and sets
+        let calc = Math.round(Number(maxSymbolInp.value) / highestSymbol * width) - 12.5
+        if (calc < 0) {
+            calc = 0
+        }
+        if (calc > width - 12.5) {
+            calc = width - 12.5
+        }
+        maxSymbol.style.left = `${calc}px`
+
+        // calculating green color starting and ending for range bar
+        let startGreen = Math.round((Number(minSymbolInp.value) / highestSymbol * 100) * 10) / 10
+        let endGreen = Math.round((Number(maxSymbolInp.value) / highestSymbol * 100) * 10) / 10
+        barSymbol.style.background = `linear-gradient(to right, #696974, #696974 ${startGreen - 1}%,#99CC66 ${startGreen}%,#99CC66 ${endGreen}%, #696974 ${endGreen}%)`
+
     })
-})
+    minPriceInp.addEventListener('blur', () => {
+        if (minPriceInp.value === '') {
+            minPriceInp.value = 0
+            filters.priceMin = 0;
+        }
+        // Checks if input value is valid
+        if (Number(minPriceInp.value) > Number(maxPriceInp.value)) {
+            minPriceInp.value = Number(maxPriceInp.value)
+            filters.priceMin = Number(maxPriceInp.value)
+        }
+        filter();
+        // calculated left px and sets
+        let calc = Math.round(Number(minPriceInp.value) / highestPrice * width) - 12.5
+        if (calc < 0) {
+            calc = 0
+        }
+        if (calc > width - 12.5) {
+            calc = width - 12.5
+        }
+        console.log(calc)
+        minPrice.style.left = `${calc}px`
+        // calculating green color starting and ending for range bar
+        let startGreen = Math.round((Number(minPriceInp.value) / highestPrice * 100) * 10) / 10
+        let endGreen = Math.round((Number(maxPriceInp.value) / highestPrice * 100) * 10) / 10
+        barPrice.style.background = `linear-gradient(to right, #696974, #696974 ${startGreen - 1}%,#99CC66 ${startGreen}%,#99CC66 ${endGreen - 3}%, #696974 ${endGreen - 4}%)`
+    })
+    maxPriceInp.addEventListener('blur', () => {
+        if (maxPriceInp.value === '') {
+            minPriceInp.value = highestPrice
+            filters.priceMax = highestPrice;
+        }
+        if (Number(minPriceInp.value) > Number(maxPriceInp.value)) {
+            maxPriceInp.value = Number(minPriceInp.value)
+        }
+        filter();
+        // calculated left px and sets
+        let calc = Math.round(Number(maxPriceInp.value) / highestPrice * width) - 12.5
+        if (calc < 0) {
+            calc = 0
+        }
+        if (calc > width - 12.5) {
+            calc = width - 12.5
+        }
+        maxPrice.style.left = `${calc}px`
+
+        // calculating green color starting and ending for range bar
+        let startGreen = Math.round((Number(minPriceInp.value) / highestPrice * 100) * 10) / 10
+        let endGreen = Math.round((Number(maxPriceInp.value) / highestPrice * 100) * 10) / 10
+        barPrice.style.background = `linear-gradient(to right, #696974, #696974 ${startGreen - 1}%,#99CC66 ${startGreen}%,#99CC66 ${endGreen - 3}%, #696974 ${endGreen - 4}%)`
+
+    })
+
+    // Search
+
+    let search = document.querySelectorAll('.search');
+    search.forEach((pe) => {
+        pe.addEventListener('keyup', (e) => {
+            filters.name = e.target.value
+            if (e.target.value === '') {
+                filters.name = null;
+            }
+            filter()
+        })
+    })
+    search.forEach((pe) => {
+        pe.addEventListener('blur', (e) => {
+            filters.name = e.target.value
+            if (e.target.value === '') {
+                filters.name = null;
+            }
+            filter()
+        })
+    })
 
 
-// Range Dragging
+    // Range Dragging
 
-// stopping drag after mouse is up
-document.addEventListener('mouseup', () => {
-    document.removeEventListener('mousemove', moveMinPrice)
-    document.removeEventListener('mousemove', moveMaxPrice)
-    document.removeEventListener('mousemove', moveMinSymbol)
-    document.removeEventListener('mousemove', moveMaxSymbol)
-})
+    // stopping drag after mouse is up
+    document.addEventListener('mouseup', () => {
+        document.removeEventListener('mousemove', moveMinPrice)
+        document.removeEventListener('mousemove', moveMaxPrice)
+        document.removeEventListener('mousemove', moveMinSymbol)
+        document.removeEventListener('mousemove', moveMaxSymbol)
+    })
 
-// events 
-minPrice.addEventListener('mousedown', () => {
-    document.addEventListener('mousemove', moveMinPrice)
-})
-function moveMinPrice(event) {
-    let left = event.clientX - x - 12.5
-    if (left < 0) {
-        left = 0
+    // events 
+    minPrice.addEventListener('mousedown', () => {
+        document.addEventListener('mousemove', moveMinPrice)
+    })
+    minPrice.addEventListener('touchmove', (event) => {
+        let left = event.changedTouches[0].clientX - x - 12.5
+        if (left < 0) {
+            left = 0
+        }
+        if (left > width - 12.5) {
+            left = width - 12.5
+        }
+        if (maxPrice.style.left === '') {
+            let limit = width - 37.5
+            if (left >= limit) {
+                left = limit
+            }
+        } else {
+            let limit = parseInt(maxPrice.style.left) - 25
+            if (left >= limit) {
+                left = limit
+            }
+        }
+
+        minPrice.style.left = left + 'px';
+        // Changing min price value
+        minPriceInp.value = Math.round((left + 12.5) / width * highestPrice)
+        if (left === 0) {
+            minPriceInp.value = 0;
+        }
+        minPriceInp.click();
+    })
+    function moveMinPrice(event) {
+        let left = event.clientX - x - 12.5
+        if (left < 0) {
+            left = 0
+        }
+        if (left > width - 12.5) {
+            left = width - 12.5
+        }
+        if (maxPrice.style.left === '') {
+            let limit = width - 37.5
+            if (left >= limit) {
+                left = limit
+            }
+        } else {
+            let limit = parseInt(maxPrice.style.left) - 25
+            if (left >= limit) {
+                left = limit
+            }
+        }
+
+        minPrice.style.left = left + 'px';
+        // Changing min price value
+        minPriceInp.value = Math.round((left + 12.5) / width * highestPrice)
+        if (left === 0) {
+            minPriceInp.value = 0;
+        }
+        minPriceInp.click();
     }
-    if (left > width - 12.5) {
-        left = width - 12.5
-    }
-    if (maxPrice.style.left === '') {
-        let limit = width - 37.5
-        if (left >= limit) {
+    minPriceInp.addEventListener('click', () => {
+
+        // If max or price is not inputed, set to highest
+        if (maxPriceInp.value === '') {
+            maxPriceInp.value = highestPrice
+        }
+
+
+        if (Number(minPriceInp.value) < 0) {
+            minPriceInp.value = 0
+        }
+
+        // calculating green color starting and ending for range bar
+        let startGreen = Math.round((Number(minPriceInp.value) / highestPrice * 100) * 10) / 10
+        let endGreen = Math.round((Number(maxPriceInp.value) / highestPrice * 100) * 10) / 10
+        barPrice.style.background = `linear-gradient(to right, #696974, #696974 ${startGreen - 1}%,#99CC66 ${startGreen}%,#99CC66 ${endGreen - 3}%, #696974 ${endGreen - 4}%)`
+
+        // Adding minimum Price in filters
+        filters.priceMin = Number(minPriceInp.value)
+
+        // filter
+        filter();
+
+    });
+
+    maxPrice.addEventListener('mousedown', () => {
+        document.addEventListener('mousemove', moveMaxPrice)
+    })
+    maxPrice.addEventListener('touchmove', (event) => {
+        let left = event.changedTouches[0].clientX - x - 12.5
+        if (left < 0) {
+            left = 0
+        }
+        if (left > width - 12.5) {
+            left = width - 12.5
+        }
+        let limit = parseInt(minPrice.style.left) + 25
+        if (left <= limit) {
             left = limit
         }
-    } else {
-        let limit = parseInt(maxPrice.style.left) - 25
-        if (left >= limit) {
+        maxPrice.style.left = left + 'px';
+        // Changing max price value
+        maxPriceInp.value = Math.round((left + 12.5) / width * highestPrice)
+        if (left === width) {
+            maxPriceInp.value = highestPrice;
+        }
+        if (left === 0) {
+            maxPriceInp.value = 0;
+        }
+        maxPriceInp.click();
+    })
+    function moveMaxPrice(event) {
+        let left = event.clientX - x - 12.5
+        if (left < 0) {
+            left = 0
+        }
+        if (left > width - 12.5) {
+            left = width - 12.5
+        }
+        let limit = parseInt(minPrice.style.left) + 25
+        if (left <= limit) {
             left = limit
         }
+        maxPrice.style.left = left + 'px';
+        // Changing max price value
+        maxPriceInp.value = Math.round((left + 12.5) / width * highestPrice)
+        if (left === width) {
+            maxPriceInp.value = highestPrice;
+        }
+        if (left === 0) {
+            maxPriceInp.value = 0;
+        }
+        maxPriceInp.click();
     }
+    maxPriceInp.addEventListener('click', () => {
+        // If min price is not inputed, set to highest
+        if (minPriceInp.value === '') {
+            minPriceInp.value = 0
+        }
+        // Checks if input value is valid
+        if (Number(maxPriceInp.value) > highestPrice) {
+            maxPriceInp.value = highestPrice
+        }
+        // calculating green color starting and ending for range bar
+        let startGreen = Math.round((Number(minPriceInp.value) / highestPrice * 100) * 10) / 10
+        let endGreen = Math.round((Number(maxPriceInp.value) / highestPrice * 100) * 10) / 10
+        barPrice.style.background = `linear-gradient(to right, #696974, #696974 ${startGreen - 1}%,#99CC66 ${startGreen}%,#99CC66 ${endGreen - 3}%, #696974 ${endGreen - 4}%)`
+        // Adding minimum Price in filters
+        filters.priceMax = Number(maxPriceInp.value)
+        // filter
+        filter();
+    });
 
-    minPrice.style.left = left + 'px';
-    // Changing min price value
-    minPriceInp.value = Math.round((left + 12.5) / width * highestPrice)
-    if (left === 0) {
-        minPriceInp.value = 0;
-    }
-    minPriceInp.click();
-}
-minPriceInp.addEventListener('click', () => {
+    minSymbol.addEventListener('mousedown', () => {
+        document.addEventListener('mousemove', moveMinSymbol)
+    })
+    minSymbol.addEventListener('touchmove', (event) => {
+        let left = event.changedTouches[0].clientX - x - 12.5
+        if (left < 0) {
+            left = 0
+        }
+        if (left > width - 12.5) {
+            left = width - 12.5
+        }
+        if (maxSymbol.style.left === '') {
+            let limit = width - 37.5
+            if (left >= limit) {
+                left = limit
+            }
+        } else {
+            let limit = parseInt(maxSymbol.style.left) - 25
+            if (left >= limit) {
+                left = limit
+            }
+        }
 
-    // If max or price is not inputed, set to highest
-    if (maxPriceInp.value === '') {
-        maxPriceInp.value = highestPrice
+        minSymbol.style.left = left + 'px';
+        // Changing min Symbol value
+        minSymbolInp.value = Math.round((left + 12.5) / width * highestSymbol)
+        if (left === 0) {
+            minSymbolInp.value = 0;
+        }
+        minSymbolInp.click();
+    })
+    function moveMinSymbol(event) {
+        let left = event.clientX - x - 12.5
+        if (left < 0) {
+            left = 0
+        }
+        if (left > width - 12.5) {
+            left = width - 12.5
+        }
+        if (maxSymbol.style.left === '') {
+            let limit = width - 37.5
+            if (left >= limit) {
+                left = limit
+            }
+        } else {
+            let limit = parseInt(maxSymbol.style.left) - 25
+            if (left >= limit) {
+                left = limit
+            }
+        }
+
+        minSymbol.style.left = left + 'px';
+        // Changing min Symbol value
+        minSymbolInp.value = Math.round((left + 12.5) / width * highestSymbol)
+        if (left === 0) {
+            minSymbolInp.value = 0;
+        }
+        minSymbolInp.click();
     }
+    minSymbolInp.addEventListener('click', () => {
+
+        // If max or Symbol is not inputed, set to highest
+        if (maxSymbolInp.value === '') {
+            maxSymbolInp.value = highestSymbol
+        }
 
 
-    if (Number(minPriceInp.value) < 0) {
-        minPriceInp.value = 0
-    }
+        if (Number(minSymbolInp.value) < 0) {
+            minSymbolInp.value = 0
+        }
 
-    // calculating green color starting and ending for range bar
-    let startGreen = Math.round((Number(minPriceInp.value) / highestPrice * 100) * 10) / 10
-    let endGreen = Math.round((Number(maxPriceInp.value) / highestPrice * 100) * 10) / 10
-    barPrice.style.background = `linear-gradient(to right, #696974, #696974 ${startGreen - 1}%,#99CC66 ${startGreen}%,#99CC66 ${endGreen - 3}%, #696974 ${endGreen - 4}%)`
+        // calculating green color starting and ending for range bar
+        let startGreen = Math.round((Number(minSymbolInp.value) / highestSymbol * 100) * 10) / 10
+        let endGreen = Math.round((Number(maxSymbolInp.value) / highestSymbol * 100) * 10) / 10
+        barSymbol.style.background = `linear-gradient(to right, #696974, #696974 ${startGreen - 1}%,#99CC66 ${startGreen}%,#99CC66 ${endGreen - 3}%, #696974 ${endGreen - 4}%)`
 
-    // Adding minimum Price in filters
-    filters.priceMin = Number(minPriceInp.value)
+        // Adding minimum Symbol in filters
+        filters.symbolMin = Number(minSymbolInp.value)
 
-    // filter
-    filter();
+        // filter
+        filter();
 
-});
+    });
 
-maxPrice.addEventListener('mousedown', () => {
-    document.addEventListener('mousemove', moveMaxPrice)
-})
-function moveMaxPrice(event) {
-    let left = event.clientX - x - 12.5
-    if (left < 0) {
-        left = 0
-    }
-    if (left > width - 12.5) {
-        left = width - 12.5
-    }
-    let limit = parseInt(minPrice.style.left) + 25
-    if (left <= limit) {
-        left = limit
-    }
-    maxPrice.style.left = left + 'px';
-    // Changing max price value
-    maxPriceInp.value = Math.round((left + 12.5) / width * highestPrice)
-    if (left === width) {
-        maxPriceInp.value = highestPrice;
-    }
-    if (left === 0) {
-        maxPriceInp.value = 0;
-    }
-    maxPriceInp.click();
-}
-maxPriceInp.addEventListener('click', () => {
-    // If min price is not inputed, set to highest
-    if (minPriceInp.value === '') {
-        minPriceInp.value = 0
-    }
-    // Checks if input value is valid
-    if (Number(maxPriceInp.value) > highestPrice) {
-        maxPriceInp.value = highestPrice
-    }
-    // calculating green color starting and ending for range bar
-    let startGreen = Math.round((Number(minPriceInp.value) / highestPrice * 100) * 10) / 10
-    let endGreen = Math.round((Number(maxPriceInp.value) / highestPrice * 100) * 10) / 10
-    barPrice.style.background = `linear-gradient(to right, #696974, #696974 ${startGreen - 1}%,#99CC66 ${startGreen}%,#99CC66 ${endGreen - 3}%, #696974 ${endGreen - 4}%)`
-    // Adding minimum Price in filters
-    filters.priceMax = Number(maxPriceInp.value)
-    // filter
-    filter();
-});
-
-minSymbol.addEventListener('mousedown', () => {
-    document.addEventListener('mousemove', moveMinSymbol)
-})
-function moveMinSymbol(event) {
-    let left = event.clientX - x - 12.5
-    if (left < 0) {
-        left = 0
-    }
-    if (left > width - 12.5) {
-        left = width - 12.5
-    }
-    if (maxSymbol.style.left === '') {
-        let limit = width - 37.5
-        if (left >= limit) {
+    maxSymbol.addEventListener('mousedown', () => {
+        document.addEventListener('mousemove', moveMaxSymbol)
+    })
+    maxSymbol.addEventListener('touchmove', (event) => {
+        let left = event.changedTouches[0].clientX - x - 12.5
+        if (left < 0) {
+            left = 0
+        }
+        if (left > width - 12.5) {
+            left = width - 12.5
+        }
+        let limit = parseInt(minSymbol.style.left) + 25
+        if (left <= limit) {
             left = limit
         }
-    } else {
-        let limit = parseInt(maxSymbol.style.left) - 25
-        if (left >= limit) {
+        maxSymbol.style.left = left + 'px';
+        // Changing max Symbol value
+        maxSymbolInp.value = Math.round((left + 12.5) / width * highestSymbol)
+        if (left === width) {
+            maxSymbolInp.value = highestSymbol;
+        }
+        if (left === 0) {
+            maxSymbolInp.value = 0;
+        }
+        maxSymbolInp.click();
+    })
+    function moveMaxSymbol(event) {
+        let left = event.clientX - x - 12.5
+        if (left < 0) {
+            left = 0
+        }
+        if (left > width - 12.5) {
+            left = width - 12.5
+        }
+        let limit = parseInt(minSymbol.style.left) + 25
+        if (left <= limit) {
             left = limit
         }
+        maxSymbol.style.left = left + 'px';
+        // Changing max Symbol value
+        maxSymbolInp.value = Math.round((left + 12.5) / width * highestSymbol)
+        if (left === width) {
+            maxSymbolInp.value = highestSymbol;
+        }
+        if (left === 0) {
+            maxSymbolInp.value = 0;
+        }
+        maxSymbolInp.click();
     }
-
-    minSymbol.style.left = left + 'px';
-    // Changing min Symbol value
-    minSymbolInp.value = Math.round((left + 12.5) / width * highestSymbol)
-    if (left === 0) {
-        minSymbolInp.value = 0;
-    }
-    minSymbolInp.click();
-}
-minSymbolInp.addEventListener('click', () => {
-
-    // If max or Symbol is not inputed, set to highest
-    if (maxSymbolInp.value === '') {
-        maxSymbolInp.value = highestSymbol
-    }
-
-
-    if (Number(minSymbolInp.value) < 0) {
-        minSymbolInp.value = 0
-    }
-
-    // calculating green color starting and ending for range bar
-    let startGreen = Math.round((Number(minSymbolInp.value) / highestSymbol * 100) * 10) / 10
-    let endGreen = Math.round((Number(maxSymbolInp.value) / highestSymbol * 100) * 10) / 10
-    barSymbol.style.background = `linear-gradient(to right, #696974, #696974 ${startGreen - 1}%,#99CC66 ${startGreen}%,#99CC66 ${endGreen - 3}%, #696974 ${endGreen - 4}%)`
-
-    // Adding minimum Symbol in filters
-    filters.symbolMin = Number(minSymbolInp.value)
-
-    // filter
-    filter();
-
-});
-
-maxSymbol.addEventListener('mousedown', () => {
-    document.addEventListener('mousemove', moveMaxSymbol)
-})
-function moveMaxSymbol(event) {
-    let left = event.clientX - x - 12.5
-    if (left < 0) {
-        left = 0
-    }
-    if (left > width - 12.5) {
-        left = width - 12.5
-    }
-    let limit = parseInt(minSymbol.style.left) + 25
-    if (left <= limit) {
-        left = limit
-    }
-    maxSymbol.style.left = left + 'px';
-    // Changing max Symbol value
-    maxSymbolInp.value = Math.round((left + 12.5) / width * highestSymbol)
-    if (left === width) {
-        maxSymbolInp.value = highestSymbol;
-    }
-    if (left === 0) {
-        maxSymbolInp.value = 0;
-    }
-    maxSymbolInp.click();
-}
-maxSymbolInp.addEventListener('click', () => {
-    // If min Symbol is not inputed, set to highest
-    if (minSymbolInp.value === '') {
-        minSymbolInp.value = 0
-    }
-    // Checks if input value is valid
-    if (Number(maxSymbolInp.value) > highestSymbol) {
-        maxSymbolInp.value = highestSymbol
-    }
-    // calculating green color starting and ending for range bar
-    let startGreen = Math.round((Number(minSymbolInp.value) / highestSymbol * 100) * 10) / 10
-    let endGreen = Math.round((Number(maxSymbolInp.value) / highestSymbol * 100) * 10) / 10
-    barSymbol.style.background = `linear-gradient(to right, #696974, #696974 ${startGreen - 1}%,#99CC66 ${startGreen}%,#99CC66 ${endGreen - 3}%, #696974 ${endGreen - 4}%)`
-    // Adding minimum Symbol in filters
-    filters.symbolMax = Number(maxSymbolInp.value)
-    // filter
-    filter();
-});
+    maxSymbolInp.addEventListener('click', () => {
+        // If min Symbol is not inputed, set to highest
+        if (minSymbolInp.value === '') {
+            minSymbolInp.value = 0
+        }
+        // Checks if input value is valid
+        if (Number(maxSymbolInp.value) > highestSymbol) {
+            maxSymbolInp.value = highestSymbol
+        }
+        // calculating green color starting and ending for range bar
+        let startGreen = Math.round((Number(minSymbolInp.value) / highestSymbol * 100) * 10) / 10
+        let endGreen = Math.round((Number(maxSymbolInp.value) / highestSymbol * 100) * 10) / 10
+        barSymbol.style.background = `linear-gradient(to right, #696974, #696974 ${startGreen - 1}%,#99CC66 ${startGreen}%,#99CC66 ${endGreen - 3}%, #696974 ${endGreen - 4}%)`
+        // Adding minimum Symbol in filters
+        filters.symbolMax = Number(maxSymbolInp.value)
+        // filter
+        filter();
+    });
 }
 
 
